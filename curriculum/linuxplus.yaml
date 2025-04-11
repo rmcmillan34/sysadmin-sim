@@ -49,39 +49,93 @@ domains:
     objectives:
       - id: "2.1"
         description: "Summarize the purpose and use of security best practices in a Linux environment."
+        tools:
+          commands: [chmod, chown, umask, su, sudo]
+          files: [/etc/shadow, /etc/passwd, /etc/sudoers]
+          concepts: [principle of least privilege, access control, file permissions]
       - id: "2.2"
         description: "Given a scenario, implement identity management."
+        tools:
+          commands: [useradd, usermod, passwd, groupadd, id, getent]
+          files: [/etc/passwd, /etc/shadow, /etc/group]
+          concepts: [users and groups, password policies]
       - id: "2.3"
         description: "Given a scenario, implement and configure firewalls."
+        tools:
+          commands: [iptables, ufw, firewalld]
+          files: [/etc/ufw/ufw.conf, /etc/firewalld]
+          concepts: [inbound/outbound rules, zones, default deny]
       - id: "2.4"
         description: "Given a scenario, configure and execute remote connectivity for system management."
+        tools:
+          commands: [ssh, scp, rsync, sftp]
+          files: [/etc/ssh/sshd_config, ~/.ssh/authorized_keys]
+          concepts: [remote access, public/private key authentication]
       - id: "2.5"
         description: "Given a scenario, apply the appropriate access controls."
+        tools:
+          commands: [chmod, chown, getfacl, setfacl, ls -l]
+          files: [/etc/fstab, /etc/security/access.conf]
+          concepts: [ACLs, ownership, special permissions]
 
   - domain_id: "3.0"
     name: "Scripting, Containers, and Automation"
     objectives:
       - id: "3.1"
         description: "Given a scenario, create simple shell scripts to automate common tasks."
+        tools:
+          commands: [bash, echo, if, for, while, test, chmod]
+          files: [~/.bashrc, ~/.bash_profile]
+          concepts: [shebang, script execution, exit codes]
       - id: "3.2"
         description: "Given a scenario, perform basic container operations."
+        tools:
+          commands: [docker, podman]
+          concepts: [containers, images, volumes, registries]
       - id: "3.3"
         description: "Given a scenario, perform basic version control using Git."
+        tools:
+          commands: [git, git clone, git commit, git push, git pull]
+          files: [.git/config]
+          concepts: [version control, repositories]
       - id: "3.4"
         description: "Summarize common infrastructure as code technologies."
+        tools:
+          concepts: [IaC, declarative configuration, automation]
       - id: "3.5"
         description: "Summarize container, cloud, and orchestration concepts."
+        tools:
+          concepts: [containers, orchestration, cloud computing]
 
   - domain_id: "4.0"
     name: "Troubleshooting"
     objectives:
       - id: "4.1"
         description: "Given a scenario, analyze and troubleshoot storage issues."
+        tools:
+          commands: [df, du, lsblk, mount, umount, fsck]
+          files: [/etc/fstab]
+          concepts: [mounting, partitions, file system integrity]
       - id: "4.2"
         description: "Given a scenario, analyze and troubleshoot network resource issues."
+        tools:
+          commands: [ping, ip, netstat, ss, traceroute, nslookup, dig]
+          files: [/etc/hosts, /etc/resolv.conf]
+          concepts: [connectivity, DNS, routing]
       - id: "4.3"
         description: "Given a scenario, analyze and troubleshoot central processing unit (CPU) and memory issues."
+        tools:
+          commands: [top, htop, free, vmstat, ps, uptime]
+          concepts: [load average, memory usage, process control]
       - id: "4.4"
         description: "Given a scenario, analyze and troubleshoot user access and file permissions."
+        tools:
+          commands: [ls, chmod, chown, getfacl]
+          files: [/etc/passwd, /etc/shadow]
+          concepts: [ownership, permissions, access issues]
       - id: "4.5"
         description: "Given a scenario, use systemd to diagnose and resolve common problems with a Linux system."
+        tools:
+          commands: [systemctl, journalctl, systemd-analyze]
+          files: [/etc/systemd/system/]
+          concepts: [services, logs, boot performance]
