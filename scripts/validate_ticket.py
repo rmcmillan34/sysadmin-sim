@@ -3,11 +3,15 @@
 import yaml
 import sys
 import os
+import stat
 
 REQUIRED_FIELDS = ["id", "title", "difficulty", "description", "objectives"]
 VALID_DIFFICULTIES = {"easy", "medium", "hard", "expert"}
 
-def validate_ticket(ticket):
+def is_executable(filepath):
+    return os.access(filepath, os.X_OK)
+
+def validate_ticket(ticket, ticket_path):
     errors = []
 
     for field in REQUIRED_FIELDS:
@@ -29,11 +33,22 @@ def validate_ticket(ticket):
     if "timeout" in ticket and not isinstance(ticket["timeout"], int):
         errors.append("Timeout must be an integer")
 
+    # Check for check_script file
+    if "check_script" in ticket:
+        script_path = ticket["check_script"]
+        full_path = os.path.join(os.path.dirname(ticket_path), "..", script_path)
+        full_path = os.path.abspath(full_path)
+
+        if not os.path.isfile(full_path):
+            errors.append(f"Checker script not found: {script_path} (resolved to: {full_path})")
+        elif not is_executable(full_path):
+            errors.append(f"Checker script is not executable: {script_path}")
+
     return errors
 
 def main():
     if len(sys.argv) != 2:
-        print("Usage: python validate_ticket.py <ticket.yaml>")
+        print("Usage: python scripts/validate_ticket.py <ticket.yaml>")
         sys.exit(1)
 
     path = sys.argv[1]
@@ -48,7 +63,7 @@ def main():
             print(f"YAML Error: {e}")
             sys.exit(1)
 
-    errors = validate_ticket(ticket)
+    errors = validate_ticket(ticket, path)
 
     if errors:
         print("❌ Validation errors:")
