@@ -1,0 +1,87 @@
+exam: "Linux+"
+version: "XK0-005"
+domains:
+  - domain_id: "1.0"
+    name: "System Management"
+    objectives:
+      - id: "1.1"
+        description: "Summarize Linux fundamentals."
+        tools:
+          commands: [uname, pwd, whoami, echo]
+          concepts: [kernel, shell, distributions]
+      - id: "1.2"
+        description: "Given a scenario, manage files and directories."
+        tools:
+          commands: [ls, cp, mv, rm, mkdir, rmdir, find, locate, touch, stat, file, du, df]
+          files: [/home, /etc/fstab]
+          concepts: [file system hierarchy, file types, permissions, links]
+      - id: "1.3"
+        description: "Given a scenario, configure and manage storage using the appropriate tools."
+        tools:
+          commands: [mount, umount, fdisk, mkfs, df, du, blkid, lsblk, parted]
+          files: [/etc/fstab]
+          concepts: [partitions, volumes, filesystems]
+      - id: "1.4"
+        description: "Given a scenario, configure and use the appropriate processes and services."
+        tools:
+          commands: [ps, top, htop, systemctl, service, kill, nice, renice]
+          concepts: [init systems, services, daemons]
+      - id: "1.5"
+        description: "Given a scenario, use the appropriate networking tools or configuration files."
+        tools:
+          commands: [ip, ifconfig, ping, netstat, ss, traceroute, nslookup, dig]
+          files: [/etc/hosts, /etc/network/interfaces, /etc/resolv.conf]
+          concepts: [network interfaces, DNS, IP addressing]
+      - id: "1.6"
+        description: "Given a scenario, build and install software."
+        tools:
+          commands: [make, gcc, dpkg, rpm, apt, yum, dnf]
+          concepts: [compiling, package building]
+      - id: "1.7"
+        description: "Given a scenario, manage software configurations."
+        tools:
+          commands: [nano, vim, systemctl]
+          files: [/etc, /etc/systemd/system]
+          concepts: [text editing, config files, services]
+
+  - domain_id: "2.0"
+    name: "Security"
+    objectives:
+      - id: "2.1"
+        description: "Summarize the purpose and use of security best practices in a Linux environment."
+      - id: "2.2"
+        description: "Given a scenario, implement identity management."
+      - id: "2.3"
+        description: "Given a scenario, implement and configure firewalls."
+      - id: "2.4"
+        description: "Given a scenario, configure and execute remote connectivity for system management."
+      - id: "2.5"
+        description: "Given a scenario, apply the appropriate access controls."
+
+  - domain_id: "3.0"
+    name: "Scripting, Containers, and Automation"
+    objectives:
+      - id: "3.1"
+        description: "Given a scenario, create simple shell scripts to automate common tasks."
+      - id: "3.2"
+        description: "Given a scenario, perform basic container operations."
+      - id: "3.3"
+        description: "Given a scenario, perform basic version control using Git."
+      - id: "3.4"
+        description: "Summarize common infrastructure as code technologies."
+      - id: "3.5"
+        description: "Summarize container, cloud, and orchestration concepts."
+
+  - domain_id: "4.0"
+    name: "Troubleshooting"
+    objectives:
+      - id: "4.1"
+        description: "Given a scenario, analyze and troubleshoot storage issues."
+      - id: "4.2"
+        description: "Given a scenario, analyze and troubleshoot network resource issues."
+      - id: "4.3"
+        description: "Given a scenario, analyze and troubleshoot central processing unit (CPU) and memory issues."
+      - id: "4.4"
+        description: "Given a scenario, analyze and troubleshoot user access and file permissions."
+      - id: "4.5"
+        description: "Given a scenario, use systemd to diagnose and resolve common problems with a Linux system."
