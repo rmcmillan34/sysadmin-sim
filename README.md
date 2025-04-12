@@ -17,13 +17,15 @@
  ▄████████▀  █▀    ▀█   ███   █▀  ████████▀  █████▄▄██   ███    █▀     ▄████▀    ▀██████▀    ███    ███ 
                                              ▀                                               ███    ███ 
                                                                                                                                                                  
-A System administrator simulator to learn Linux concepts for basic Linux certifications such as the Linux+ or LPIC-1/2
+**SysAdmin Simulator** is a command-line based Linux learning environment where you solve realistic system administration tickets — just like a real sysadmin. Practice your Linux+, LPIC, LFCS, and RHCSA skills by troubleshooting live systems, navigating user requests, and solving challenges that simulate real-world Linux issues.
+
+---
 
 ## 📦 Features
 
 - 🧾 Simulated helpdesk-style tickets
 - ⌨️ All interactions via CLI (SSH, TUI, or terminal)
-- 🧠 Supports Linux+ and LPIC-1/2 curriculum
+- 🧠 Supports Linux+, LPIC-1/2, LFCS, and RHCSA curricula
 - 🐳 Hybrid Docker support (local & CTFd)
 - 🔐 Sandbox-safe environments per ticket
 - 🧩 Built-in hints, difficulty levels, and timers
@@ -67,10 +69,11 @@ ticket-cli start ticket-001
 
 ## 📂 Directory Structure
 
-```bash
+```
 .
 ├── tickets/          # YAML ticket definitions
 ├── checks/           # Per-ticket checker scripts
+├── curriculum/       # Curriculum YAMLs for Linux+, LPIC, RHCSA, LFCS
 ├── docker/           # Dockerfiles for base and ticket images
 ├── ticket-cli/       # Source for the CLI tool
 ├── scripts/          # Utilities, export-to-ctfd, etc.
@@ -82,46 +85,62 @@ ticket-cli start ticket-001
 
 ## 📚 Curriculum Mapping
 
-- Linux+ (TODO)
-- LPIC-1 (TODO)
-- LPIC-2 (TODO)
-- Red Hat RHSCA (TODO)
+Supported certifications:
+
+- ✅ Linux+ (XK0-005)
+- ✅ LPIC-1 and LPIC-2
+- ✅ Red Hat RHCSA
+- ✅ Linux Foundation LFCS (2024)
+
+Tickets are mapped to learning objectives with:
+- Exam name, version, domain, and objective ID
+- Descriptions
+- Related tools, commands, concepts, and config files
+
+See full mapping in [ticket-spec.md](docs/ticket-spec.md).
 
 ---
 
 ## 🐳 Docker Modes
 
-|--|--|
-|Mode|Description|
-|Local| All tickets inside one container|
-|CTFd| One Container per ticket (for gamified use)|
-|Hybrid|Supports both for dev/test/CTF environments|
+| Mode        | Description                                    |
+|-------------|------------------------------------------------|
+| **Local**   | All tickets inside one container               |
+| **CTFd**    | One container per ticket (for gamified use)    |
+| **Hybrid**  | Supports both for dev/test/CTF environments    |
 
-Releases include multi-arch builds (`amd64`,`arm64`).
+Releases include multi-arch builds (`amd64`, `arm64`).
 
 ---
 
 ## 🧪 Contributing
+
 We welcome issues, feature requests, and pull requests!
 
-**Quick links:**
-- Setup Guide
-- Ticket Spec
-- Contributing Guidelines
+### Quick links:
+- [Setup Guide](docs/setup-guide.md)
+- [Ticket Spec](docs/ticket-spec.md)
+- [Contributing Guidelines](docs/contributing.md)
 
 ---
 
-## 📚 Documentation
+## 🧠 Future Plans
 
-- [Requirements](docs/requirements.md)
-- [System Architecture](docs/architecture.md)
-- [Ticket Spec](docs/ticket-spec.md)
-- [CTFd Integration](docs/ctfd-integration.md)
-- [Setup Guide](docs/setup-guide.md)
-- [Contributing Guide](docs/contributing.md)
+- Web dashboard for tracking
+- Leaderboards and achievements
+- RHCSA, LPIC-2 expansions
+- More gamified challenge modes
+
+See full roadmap: [roadmap.md](docs/roadmap.md)
 
 ---
 
 ## 📜 License
-[MIT License](LICENSE) – free to use, fork, and contribute!
 
+MIT License – free to use, fork, and contribute!
+
+---
+
+## 🧵 Acknowledgements
+
+Inspired by real sysadmin tasks and the open-source training community.
