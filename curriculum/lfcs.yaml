@@ -1,0 +1,209 @@
+exam: "LFCS"
+version: "2024"
+domains:
+  - domain_id: "1"
+    name: "Operations Deployment"
+    objectives:
+      - id: "1.1"
+        description: "Configure kernel parameters, persistent and non-persistent"
+        tools:
+          commands: [sysctl]
+          files: [/etc/sysctl.conf]
+          concepts: [kernel tuning, runtime parameters]
+      - id: "1.2"
+        description: "Diagnose, identify, manage, and troubleshoot processes and services"
+        tools:
+          commands: [ps, top, htop, systemctl, kill, journalctl]
+          concepts: [process states, init systems, logs]
+      - id: "1.3"
+        description: "Manage or schedule jobs for executing commands"
+        tools:
+          commands: [cron, at, anacron, systemd timers]
+          files: [/etc/crontab, /etc/systemd/system]
+          concepts: [job scheduling, time-based automation]
+      - id: "1.4"
+        description: "Search for, install, validate, and maintain software packages or repositories"
+        tools:
+          commands: [apt, yum, dnf, rpm, dpkg]
+          files: [/etc/apt/sources.list, /etc/yum.repos.d/]
+          concepts: [package management, repositories]
+      - id: "1.5"
+        description: "Recover from hardware, operating system, or filesystem failures"
+        tools:
+          commands: [fsck, mount, journalctl, systemctl]
+          concepts: [disaster recovery, root password reset, bootloader repair]
+      - id: "1.6"
+        description: "Manage Virtual Machines (libvirt)"
+        tools:
+          commands: [virsh, virt-install, virt-manager]
+          concepts: [virtualization, KVM, hypervisor]
+      - id: "1.7"
+        description: "Configure container engines, create and manage containers"
+        tools:
+          commands: [docker, podman]
+          concepts: [containers, images, volumes]
+      - id: "1.8"
+        description: "Create and enforce MAC using SELinux"
+        tools:
+          commands: [sestatus, setenforce, semanage, chcon]
+          files: [/etc/selinux/config]
+          concepts: [mandatory access control, SELinux modes]
+
+  - domain_id: "2"
+    name: "Networking"
+    objectives:
+      - id: "2.1"
+        description: "Configure IPv4 and IPv6 networking and hostname resolution"
+        tools:
+          commands: [ip, ifconfig, hostname, ping]
+          files: [/etc/hosts, /etc/hostname, /etc/network/interfaces]
+          concepts: [network interfaces, IP addressing, DNS resolution]
+      - id: "2.2"
+        description: "Set and synchronize system time using time servers"
+        tools:
+          commands: [timedatectl, chronyd, ntpd]
+          files: [/etc/chrony.conf, /etc/ntp.conf]
+          concepts: [NTP, time synchronization]
+      - id: "2.3"
+        description: "Monitor and troubleshoot networking"
+        tools:
+          commands: [ping, traceroute, netstat, ss, tcpdump, ip]
+          concepts: [connectivity, routing, port scanning]
+      - id: "2.4"
+        description: "Configure the OpenSSH server and client"
+        tools:
+          commands: [ssh, ssh-keygen, sshd]
+          files: [/etc/ssh/sshd_config, ~/.ssh/authorized_keys]
+          concepts: [remote access, key-based authentication]
+      - id: "2.5"
+        description: "Configure packet filtering, port redirection, and NAT"
+        tools:
+          commands: [iptables, firewalld, nftables]
+          files: [/etc/sysconfig/iptables, /etc/firewalld]
+          concepts: [firewall rules, NAT, port forwarding]
+      - id: "2.6"
+        description: "Configure static routing"
+        tools:
+          commands: [ip route, route]
+          files: [/etc/network/interfaces]
+          concepts: [routing tables, static routes]
+      - id: "2.7"
+        description: "Configure bridge and bonding devices"
+        tools:
+          commands: [brctl, nmcli, ip link]
+          concepts: [network bonding, bridging]
+      - id: "2.8"
+        description: "Implement reverse proxies and load balancers"
+        tools:
+          commands: [nginx, haproxy]
+          files: [/etc/nginx/nginx.conf, /etc/haproxy/haproxy.cfg]
+          concepts: [reverse proxy, load balancing]
+
+  - domain_id: "3"
+    name: "Storage"
+    objectives:
+      - id: "3.1"
+        description: "Configure and manage LVM storage"
+        tools:
+          commands: [lvcreate, vgcreate, pvcreate, lvs, vgs, pvs]
+          files: [/etc/lvm/lvm.conf]
+          concepts: [logical volumes, volume groups]
+      - id: "3.2"
+        description: "Manage and configure the virtual file system"
+        tools:
+          commands: [mount, umount, lsblk, blkid]
+          files: [/etc/fstab]
+          concepts: [VFS, mount points, devices]
+      - id: "3.3"
+        description: "Create, manage, and troubleshoot filesystems"
+        tools:
+          commands: [mkfs, fsck, tune2fs]
+          concepts: [filesystem types, integrity, formatting]
+      - id: "3.4"
+        description: "Use remote filesystems and network block devices"
+        tools:
+          commands: [mount, nfs, sshfs]
+          concepts: [remote storage, file sharing]
+      - id: "3.5"
+        description: "Configure and manage swap space"
+        tools:
+          commands: [swapon, swapoff, mkswap]
+          files: [/etc/fstab]
+          concepts: [virtual memory, swap partition]
+      - id: "3.6"
+        description: "Configure filesystem automounters"
+        tools:
+          commands: [autofs]
+          files: [/etc/auto.master, /etc/auto.misc]
+          concepts: [automounting, dynamic mounts]
+      - id: "3.7"
+        description: "Monitor storage performance"
+        tools:
+          commands: [iostat, df, du, dstat]
+          concepts: [I/O, disk usage, throughput]
+
+  - domain_id: "4"
+    name: "Essential Commands"
+    objectives:
+      - id: "4.1"
+        description: "Basic Git Operations"
+        tools:
+          commands: [git, git clone, git commit, git push, git pull]
+          files: [.git/config]
+          concepts: [version control, Git workflow]
+      - id: "4.2"
+        description: "Create, configure, and troubleshoot services"
+        tools:
+          commands: [systemctl, service, journalctl]
+          concepts: [service lifecycle, troubleshooting]
+      - id: "4.3"
+        description: "Monitor and troubleshoot system performance and services"
+        tools:
+          commands: [top, htop, ps, uptime, iostat]
+          concepts: [performance analysis, bottlenecks]
+      - id: "4.4"
+        description: "Determine application and service specific constraints"
+        tools:
+          concepts: [system requirements, service dependencies]
+      - id: "4.5"
+        description: "Troubleshoot diskspace issues"
+        tools:
+          commands: [df, du, find]
+          concepts: [space usage, large files, cleanup]
+      - id: "4.6"
+        description: "Work with SSL certificates"
+        tools:
+          commands: [openssl, certbot]
+          files: [/etc/ssl, /etc/letsencrypt]
+          concepts: [certificate management, HTTPS]
+
+  - domain_id: "5"
+    name: "Users and Groups"
+    objectives:
+      - id: "5.1"
+        description: "Create and manage local user and group accounts"
+        tools:
+          commands: [useradd, usermod, groupadd, passwd]
+          files: [/etc/passwd, /etc/group]
+          concepts: [user management, groups]
+      - id: "5.2"
+        description: "Manage personal and system-wide environment profiles"
+        tools:
+          files: [~/.bashrc, /etc/profile]
+          concepts: [shell environment, startup scripts]
+      - id: "5.3"
+        description: "Configure user resource limits"
+        tools:
+          files: [/etc/security/limits.conf]
+          concepts: [ulimits, resource constraints]
+      - id: "5.4"
+        description: "Configure and manage ACLs"
+        tools:
+          commands: [getfacl, setfacl]
+          concepts: [access control lists, extended permissions]
+      - id: "5.5"
+        description: "Configure the system to use LDAP user and group accounts"
+        tools:
+          commands: [ldapsearch, authconfig]
+          files: [/etc/nsswitch.conf, /etc/ldap.conf]
+          concepts: [LDAP, centralized authentication]
