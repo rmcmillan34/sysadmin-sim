@@ -1,0 +1,24 @@
+FROM rockylinux:9
+
+LABEL maintainer="ryan.j.mcmillan34@gmail.com"
+LABEL org.opencontainers.image.source="https://github.com/rmcmillan34/sysadmin-simulator"
+LABEL stage="base"
+
+ENV TERM xterm
+ENV container docker
+ENV LANG en_US.UTF-8
+
+RUN dnf -y update && \
+    dnf install -y \
+      bash \
+      sudo \
+      openssh-server \
+      systemd \
+      firewalld \
+      NetworkManager \
+      hostname \
+      iproute \
+      iputils \
+    && dnf clean all
+
+SHELL ["/bin/bash", "-c"]
