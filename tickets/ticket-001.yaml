@@ -1,0 +1,59 @@
+id: ticket-001
+title: "List files in the tools directory"
+difficulty: easy
+description: |
+  A developer wants to know what files are located in the /usr/bin directory.
+  Use Linux commands to change into the directory and list its contents.
+
+  Save the output of your listing to /tmp/tools_listing.txt
+
+objectives:
+  - Navigate to the /usr/bin directory
+  - Use the `ls` command to list visible files
+  - Redirect the output to /tmp/tools_listing.txt
+
+hints:
+  - Use `cd /usr/bin` to enter the directory
+  - Use `ls > /tmp/tools_listing.txt` to save the output
+
+timeout: 300
+flag: LINUX{tools_directory_listed}
+tags: [navigation, shell, ls, cd]
+compatible_distros:
+  - ubuntu
+  - debian
+  - fedora
+  - rocky
+  - alpine
+architecture:
+  - amd64
+  - arm64
+  
+check_script: checks/ticket-001-check.sh
+
+objectives_map:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "3.0"
+    objective_id: "3.1"
+    objective_desc: "Use basic Linux commands"
+    tools:
+      commands: [cd, ls]
+      files: [/tmp/tools_listing.txt]
+      concepts: [directory navigation, output redirection]
+
+  - exam: "LPIC-1"
+    version: "5.0"
+    domain: "103"
+    objective_id: "103.2"
+    objective_desc: "Work on the command line"
+    tools:
+      commands: [cd, ls]
+
+  - exam: "LFCS"
+    version: "2024"
+    domain: "4"
+    objective_id: "4.1"
+    objective_desc: "Monitor and troubleshoot system performance and services"
+    tools:
+      commands: [ls]
