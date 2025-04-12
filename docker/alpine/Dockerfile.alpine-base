@@ -1,7 +1,7 @@
 FROM alpine:3.18
 
-LABEL maintainer="you@example.com"
-LABEL org.opencontainers.image.source="https://github.com/YOURORG/sysadmin-simulator"
+LABEL maintainer="ryan.j.mcmillan@gmail.com"
+LABEL org.opencontainers.image.source="https://github.com/rmcmillan34/sysadmin-simulator"
 LABEL stage="base"
 
 # Basic environment
