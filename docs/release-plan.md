@@ -23,7 +23,7 @@ Base container images are published to GitHub Container Registry (GHCR) and vers
 - `base-alpine-3.18-arm64`
 - `base-raspbian-2024-arm64`
 
-> 📦 These tags are also used in GitHub Releases and pushed directly to `ghcr.io/<org>/<image>`.
+> 📦 These tags are also used in GitHub Releases and pushed directly to `ghcr.io/rmcmillan34/<image>`.
 
 ### 🎯 Purpose
 
