@@ -210,3 +210,28 @@ Base images pushed to GitHub Container Registry (GHCR) will be versioned using t
 ### Related Documentation
 See [`release-plan.md`](release-plan.md) for a full description of the base image tag naming convention and release publishing process.
 
+---
+
+## [DD-011] Randomized Exam Simulation Containers
+
+### Decision
+Exam-mode containers will be generated at runtime by dynamically selecting tickets aligned to a target exam's objective distribution.
+
+### Rationale
+- Provides realistic, varied cert-style practice
+- Enables container reuse while maintaining novelty
+- Avoids image bloat from pre-baking static ticket sets
+- Supports adaptive learning and exam replayability
+
+### Implementation Notes
+- Ticket selection occurs during container startup
+- `objectives_map` is used to categorize tickets by domain
+- Selection weights are based on official exam domain coverage
+- Selected tickets are copied into a temporary workspace
+- `check_script` and `setup.sh` are copied or symlinked in
+
+### Related Docs
+- [`exam-bundle-spec.md`](./exam-bundle-spec.md) — defines structure of exam manifests and ticket selection
+- [`requirements.md`](./requirements.md) → Section **11. Exam Simulation Framework**
+
+---
