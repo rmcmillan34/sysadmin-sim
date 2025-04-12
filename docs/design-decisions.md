@@ -85,6 +85,16 @@ Official containers will be built for the following distributions:
 - **Alpine** (latest stable)
 - **Raspbian** / Raspberry Pi OS *(ARM64 only)*
 
+### Fedora & Rocky Linux Policy
+
+Fedora and Rocky base images are intentionally kept as close to their respective default installs as possible to reflect realistic Red Hat Enterprise Linux (RHEL)-based environments. This decision supports the RHCSA learning path and prevents the accidental use of Debian-specific tools or configs.
+
+- Only native RHEL tools (`dnf`, `firewalld`, `nmcli`, `systemd`) are installed.
+- Tools like `lsb_release`, `apt`, or `ufw` are **not** included or expected.
+- Tickets targeting these images must be written explicitly for RHEL-compatible behaviors.
+
+This ensures that users are exposed to the actual challenges they'll face in RHEL environments and prevents cross-distro contamination of expectations.
+
 ### Rationale
 - Covers all major certification families (Debian-based and RHEL-based)
 - Ensures compatibility with ARM (e.g., Raspberry Pi)
