@@ -1,0 +1,27 @@
+FROM alpine:3.18
+
+LABEL maintainer="you@example.com"
+LABEL org.opencontainers.image.source="https://github.com/YOURORG/sysadmin-simulator"
+LABEL stage="base"
+
+# Basic environment
+ENV TERM xterm
+ENV container docker
+ENV LANG en_US.UTF-8
+
+# Update and install minimal tools
+RUN apk update && \
+    apk add --no-cache \
+      bash \
+      sudo \
+      openssh \
+      iproute2 \
+      iputils \
+      busybox-extras \
+      coreutils \
+      shadow \
+      openrc \
+      grep \
+      util-linux
+
+SHELL ["/bin/bash", "-c"]
