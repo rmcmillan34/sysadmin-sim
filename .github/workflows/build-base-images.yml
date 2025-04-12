@@ -79,6 +79,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Copy shared sysadmmin setup script into distro
+        run: cp docker/setup/setup-sysadmin-user.sh docker/${{ matrix.distro }}/
+
       - name: Build and Push Image ${{ matrix.distro }}:${{ matrix.version }}-${{ matrix.arch }}
         uses: docker/build-push-action@v5
         with:
@@ -89,3 +92,6 @@ jobs:
           tags: |
             ${{ env.GHCR_REGISTRY }}/sysadmin-sim-${{ matrix.distro }}-base:${{ matrix.distro }}-${{ matrix.version }}-${{ matrix.arch }}
             ${{ env.GHCR_REGISTRY }}/sysadmin-sim-${{ matrix.distro }}-base:latest-${{ matrix.arch }}
+
+      - name: Clean up injected setup script
+        run: rm -f docker/${{ matrix.distro }}/setup-sysadmin-user.sh
