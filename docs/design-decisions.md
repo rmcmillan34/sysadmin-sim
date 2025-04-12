@@ -177,3 +177,26 @@ Base Dockerfiles will use the following naming scheme: `Dockerfile.<distro>-base
 ### Example
 - `docker/ubuntu/Dockerfile.ubuntu-base`
 - `docker/debian/Dockerfile.debian-base`
+
+---
+
+## [DD-010] Base Image Release Tag Format
+
+### Decision
+Base images pushed to GitHub Container Registry (GHCR) will be versioned using the following standardized tag format:
+
+`base-<distro>-<version>-<arch>`
+
+### Examples
+- `base-ubuntu-22.04-amd64`
+- `base-fedora-39-arm64`
+- `base-alpine-3.18-arm64`
+
+### Rationale
+- Enables traceability between container versions and ticket compatibility
+- Allows image tags to match GitHub Release versions and CI/CD outputs
+- Keeps multi-arch and multi-distro support organized and machine-parsable
+
+### Related Documentation
+See [`release-plan.md`](release-plan.md) for a full description of the base image tag naming convention and release publishing process.
+
