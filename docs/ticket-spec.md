@@ -25,6 +25,10 @@ Each ticket is a `.yaml` file stored in the `/tickets/` directory.
 | `difficulty`    | string    | ✅       | One of: `easy`, `medium`, `hard`, `expert` |
 | `description`   | string    | ✅       | Detailed multi-line description of the problem |
 | `objectives`    | list      | ✅       | List of things the user must achieve or fix |
+| `question_type` | string    | ✅       | Type of question (e.g., `command_demo`, `scripting`, `config`, etc. see Appendix below) |
+| `offline_safe`  | boolean   | ❌       | Whether the ticket is fully operable in an offline environment |
+| `requires_network`| boolean | ❌       | Whether the ticket expects external or loopback networking to function |
+| `requires_package_install`| boolean   | ❌       | Whether installation of packages is part of the challenge |
 | `hints`         | list      | ❌       | Optional hints to guide users |
 | `timeout`       | integer   | ❌       | Optional time limit in seconds |
 | `flag`          | string    | ❌       | Optional flag string (e.g., `LINUX{ssh_config_fixed}`) |
@@ -51,6 +55,8 @@ objectives:
   - The firewall must allow port 22
   - User `webdev` must exist and be in the correct group
 
+question_type: scripting
+
 ```
 
 ---
@@ -59,13 +65,17 @@ objectives:
 These enhance the experience or allow integration with systems like CTFd.
 
 ```yaml
+offline_safe: true
+requires_network: false
+requires_package_install: false
+
 hints:
   - Use `systemctl status sshd` to check the service
   - Check firewall rules with `iptables` or `ufw`
   - Look at `/etc/ssh/sshd_config`
 
 timeout: 900  # 15 minutes
-flag: lnx{sshd_config_fixed}
+flag: LINUX{sshd_config_fixed}
 tags: [ssh, networking, troubleshooting]
 check_script: checks/ticket-001-check.sh
 ```
@@ -97,7 +107,6 @@ objectives_map:
 ```
 Each ticket may contain multiple mapped objectives from any certification
 
----
 
 ---
 
@@ -192,6 +201,11 @@ objectives:
   - Port 22 is open in the firewall
   - SSHD is running and enabled
 
+question_type: config
+offline_safe: true
+requires_network: false
+requires_package_install: false
+
 hints:
   - Use `ufw status` or `iptables -L`
   - Restart sshd after changes
@@ -213,3 +227,28 @@ objectives_map:
       concepts: [firewall rules, service management]
 
 ```
+
+## 📎 Appendix: `question_type` Field
+
+The `question_type` field categorizes the style of challenge presented in the ticket. This helps guide users, validators, and future UI/UX tooling.
+
+Refer to [`question-types.md`](./question-types.md) for full descriptions and examples.
+
+The following values are currently supported:
+
+| Value                | Description                                   |
+|----------------------|-----------------------------------------------|
+| `multiple_choice`    | Select the correct answer from several options |
+| `manpage_lookup`     | Locate information from documentation or `man` |
+| `command_demo`       | Demonstrate command usage via CLI             |
+| `scripting`          | Write or modify a script                      |
+| `config`             | Edit config files or restore system behavior  |
+| `file_edit`          | Create/edit files with specific content       |
+| `package_state`      | Install, remove, or verify packages/services  |
+| `permissions`        | Modify file permissions or ownership          |
+| `monitoring`         | Observe or capture system state/output        |
+| `networking`         | Perform or simulate networking tasks          |
+| `process_job`        | Schedule or manage running processes          |
+| `multi_step`         | Complete a compound workflow across systems   |
+
+You may propose new `question_type` values as needed by opening a pull request or submitting a feature request.
