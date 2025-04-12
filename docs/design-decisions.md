@@ -163,3 +163,17 @@ All checker scripts must be written in **Bash**.
 - Allowing user-defined interpreter field (adds complexity without real benefit)
 
 ---
+
+## [DD-009] Dockerfile Naming Convention for Base Images
+
+### Decision
+Base Dockerfiles will use the following naming scheme: `Dockerfile.<distro>-base`, and live in the `docker/<distro>/` directory.
+
+### Rationale
+- Makes multi-distro pipelines easier to manage in CI/CD
+- Avoids collisions with per-ticket Dockerfiles later
+- Keeps the file naming aligned with image tags
+
+### Example
+- `docker/ubuntu/Dockerfile.ubuntu-base`
+- `docker/debian/Dockerfile.debian-base`
