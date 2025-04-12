@@ -75,7 +75,7 @@ hints:
   - Look at `/etc/ssh/sshd_config`
 
 timeout: 900  # 15 minutes
-flag: LINUX{sshd_config_fixed}
+flag: LINUX{e99a18c428cb38d5f260853678922e03}
 tags: [ssh, networking, troubleshooting]
 check_script: checks/ticket-001-check.sh
 ```
