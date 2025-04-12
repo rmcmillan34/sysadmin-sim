@@ -311,3 +311,23 @@ Metadata for the concepts, skills and tools required to solve the ticket. The ca
 │
 └── README.md               # Main project readme
 ```
+## 11. Exam Simulation Framework
+
+The system must support auto-generated exam simulation containers. These containers will:
+
+- Randomly select a set of tickets from the global pool
+- Respect the objective distribution per exam (e.g., Linux+, LPIC-1)
+- Include only tickets tagged with matching `objectives_map.exam`
+- Copy in all required `check_script` and `setup.sh` files
+- Generate an `exam.yaml` manifest describing the ticket order and objectives
+- Present users with a time-limited terminal challenge session (e.g., 90 minutes)
+
+Ticket selection will occur each time the container is started, enabling randomized challenge sessions aligned to the exam objectives.
+
+The selection engine will use:
+- Ticket metadata from YAML (`objectives_map`)
+- Predefined exam domain weights
+- Dynamic script-based filtering and packaging
+
+This feature supports future deployment as practice cert exams, scored containers, or formal assessments.
+
