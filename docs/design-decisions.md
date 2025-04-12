@@ -278,3 +278,34 @@ Tickets that involve networking will use simulated services and loopback interfa
 - `offline_safe: true|false`
 
 ---
+
+## [DD-014] Flag Format Standardization
+
+### Decision
+All challenge flags will follow the format:
+
+`LINUX{<md5hash>}`
+
+Where `<md5_hash>` is a deterministic **MD5 hash** that uniquely identifies the ticket or result of its solution.
+
+### Rationale
+- Ensures consistency with CTF platforms like Hack The Box and CTFd
+- MD5 provides a fixed-length (32 characters), fast-to-generate hash
+- Guarantees uniqueness while avoiding guessable values
+- Professional and clean flag structure suitable for scoring and automation
+
+### Implementation Guidelines
+- The MD5 hash must be generated deterministically (e.g., from expected solution state, or some other random variable)
+- The `flag` field in the ticket YAML will contain the full `LINUX{md5_hash}` string
+- The checker script may emit this flag to indicate success
+- Flags must not be guessable, hardcoded, or derived from ticket titles
+
+### Example
+```yaml
+flag: LINUX{e99a18c428cb38d5f260853678922e03}
+```
+
+### Related Fields in ticket schema
+- `flag` (defined in each ticket YAML)
+- `check_script` (used to validate and optionally output the flag)
+
