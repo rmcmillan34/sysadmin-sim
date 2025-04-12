@@ -99,6 +99,39 @@ Each ticket may contain multiple mapped objectives from any certification
 
 ---
 
+---
+
+## 🔧 Checker Script Requirements
+
+Each ticket may define a `check_script` to validate completion. All checker scripts must follow the standard outlined in:
+
+📄 [`checker-script-spec.md`](./docs/checker-script-spec.md)
+
+### Key Rules:
+- Must be written in **Bash**
+- Must validate **architecture** and **distribution**
+- Must return appropriate **exit codes**:
+  - `0` = success
+  - `1` = failure
+  - `2` = unsupported environment
+- Should echo user-friendly messages
+- May output a `flag` **only upon success**
+
+Example stub:
+```bash
+#!/bin/bash
+ARCH=$(uname -m)
+DISTRO=$(grep "^ID=" /etc/os-release | cut -d= -f2 | tr -d '"')
+```
+
+Checker scripts live in the `/checks/` directory and are referenced in each tickets YAML as:
+
+```yaml
+check_script: checks/ticket-001-check.sh
+```
+
+---
+
 ## 📁 Directory Layout
 
 ```bash
