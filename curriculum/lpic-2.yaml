@@ -1,1 +1,204 @@
+exam: "LPIC-2"
+version: "4.5"
+domains:
+  - domain_id: "201"
+    name: "Linux Kernel"
+    objectives:
+      - id: "201.1"
+        description: "Kernel components"
+        tools: ["lsmod", "modprobe", "insmod", "rmmod"]
+        commands: ["lsmod", "modprobe", "insmod", "rmmod"]
+        files: ["/lib/modules/", "/proc/modules"]
+        concepts: ["kernel modules", "monolithic vs modular", "module dependencies"]
+
+      - id: "201.2"
+        description: "Compiling a Linux kernel"
+        tools: ["make", "gcc", "menuconfig"]
+        commands: ["make", "make install", "make modules_install"]
+        files: ["/usr/src/linux"]
+        concepts: ["kernel compilation", "initrd", "bzImage"]
+
+      - id: "201.3"
+        description: "Managing kernel runtime parameters"
+        tools: ["sysctl"]
+        commands: ["sysctl", "echo > /proc/sys/..."]
+        files: ["/etc/sysctl.conf", "/proc/sys/"]
+        concepts: ["kernel tuning", "parameter persistence"]
+
+  - domain_id: "202"
+    name: "System Startup"
+    objectives:
+      - id: "202.1"
+        description: "Customizing system startup"
+        tools: ["systemctl", "chkconfig", "update-rc.d"]
+        commands: ["systemctl enable", "systemctl disable", "chkconfig", "update-rc.d"]
+        files: ["/etc/systemd/system", "/etc/init.d"]
+        concepts: ["systemd targets", "SysV init", "startup dependencies"]
+
+      - id: "202.2"
+        description: "System recovery"
+        tools: ["rescue.target", "init=/bin/bash"]
+        commands: ["mount", "passwd", "chroot"]
+        files: ["/etc/fstab", "/etc/shadow"]
+        concepts: ["rescue mode", "single-user mode", "broken boot recovery"]
+
+  - domain_id: "203"
+    name: "Filesystem and Devices"
+    objectives:
+      - id: "203.1"
+        description: "Operating the Linux filesystem"
+        tools: ["mount", "umount", "ls", "df"]
+        commands: ["mount", "umount", "df", "ls -l"]
+        files: ["/etc/fstab", "/proc/mounts"]
+        concepts: ["mount points", "filesystem layout", "virtual filesystems"]
+
+      - id: "203.2"
+        description: "Maintaining a Linux filesystem"
+        tools: ["fsck", "tune2fs", "e2label"]
+        commands: ["fsck", "tune2fs", "e2label"]
+        files: ["/dev/sd*", "/etc/fstab"]
+        concepts: ["filesystem health", "superblocks", "journaling"]
+
+      - id: "203.3"
+        description: "Creating and configuring filesystem options"
+        tools: ["mkfs", "tune2fs", "mount"]
+        commands: ["mkfs.ext4", "mkfs.xfs", "mount -o"]
+        files: ["/etc/fstab"]
+        concepts: ["mount options", "labels and UUIDs", "fstab configuration"]
+
+      - id: "203.4"
+        description: "Maintaining the integrity of filesystems"
+        tools: ["md5sum", "sha256sum", "tripwire"]
+        commands: ["md5sum", "sha256sum"]
+        files: []
+        concepts: ["checksums", "file integrity", "verification tools"]
+
+      - id: "203.5"
+        description: "Controlling mounting and unmounting of filesystems"
+        tools: ["mount", "umount"]
+        commands: ["mount", "umount"]
+        files: ["/etc/fstab"]
+        concepts: ["automount", "removable media", "filesystem consistency"]
+
+      - id: "203.6"
+        description: "Using and administering swap spaces"
+        tools: ["swapon", "swapoff", "mkswap"]
+        commands: ["swapon", "swapoff", "mkswap"]
+        files: ["/etc/fstab", "/proc/swaps"]
+        concepts: ["swap files", "swap partitions", "memory management"]
+
+      - id: "203.7"
+        description: "Creating RAID devices"
+        tools: ["mdadm"]
+        commands: ["mdadm --create", "mdadm --assemble"]
+        files: ["/etc/mdadm.conf"]
+        concepts: ["RAID levels", "software RAID", "fault tolerance"]
+
+      - id: "203.8"
+        description: "Adjusting and configuring LVM"
+        tools: ["pvcreate", "vgcreate", "lvcreate"]
+        commands: ["lvcreate", "lvextend", "lvremove"]
+        files: ["/etc/lvm/lvm.conf"]
+        concepts: ["LVM architecture", "volume groups", "snapshots"]
+
+  - domain_id: "204"
+    name: "Advanced Storage Device Administration"
+    objectives:
+      - id: "204.1"
+        description: "Configuring RAID"
+        tools: ["mdadm"]
+        commands: ["mdadm", "cat /proc/mdstat"]
+        files: ["/etc/mdadm.conf"]
+        concepts: ["RAID 0/1/5/6/10", "redundancy", "striping", "mirroring"]
+
+      - id: "204.2"
+        description: "Adjusting and configuring LVM"
+        tools: ["lvm", "lvcreate", "vgextend"]
+        commands: ["pvcreate", "vgcreate", "lvcreate", "lvextend", "lvremove"]
+        files: ["/etc/lvm/lvm.conf"]
+        concepts: ["LVM snapshots", "resizing", "thin provisioning"]
+
+      - id: "204.3"
+        description: "iSCSI Initiator Configuration"
+        tools: ["iscsiadm", "systemctl"]
+        commands: ["iscsiadm", "systemctl start iscsid"]
+        files: ["/etc/iscsi/iscsid.conf"]
+        concepts: ["network block devices", "storage over IP"]
+
+      - id: "204.4"
+        description: "Using and mounting NFS"
+        tools: ["mount", "showmount"]
+        commands: ["mount -t nfs", "showmount -e"]
+        files: ["/etc/fstab"]
+        concepts: ["NFS client", "network filesystems"]
+
+      - id: "204.5"
+        description: "Using and mounting Samba"
+        tools: ["smbclient", "mount", "smbmount"]
+        commands: ["mount -t cifs", "smbclient"]
+        files: ["/etc/samba/smb.conf", "/etc/fstab"]
+        concepts: ["Windows interoperability", "CIFS", "Samba clients"]
+
+  - domain_id: "205"
+    name: "Networking Configuration"
+    objectives:
+      - id: "205.1"
+        description: "Basic networking configuration"
+        tools: ["ip", "ifconfig", "netplan", "nmcli"]
+        commands: ["ip addr", "ip link", "nmcli", "netplan apply"]
+        files: ["/etc/network/interfaces", "/etc/netplan/*.yaml"]
+        concepts: ["IPv4/IPv6", "interface configuration", "hostname resolution"]
+
+      - id: "205.2"
+        description: "Advanced network configuration and troubleshooting"
+        tools: ["netstat", "ss", "tcpdump", "traceroute", "ping"]
+        commands: ["ping", "traceroute", "netstat", "ss", "tcpdump"]
+        files: []
+        concepts: ["routing", "packet capture", "port usage"]
+
+      - id: "205.3"
+        description: "Troubleshooting network issues"
+        tools: ["dig", "nslookup", "ping", "tcpdump"]
+        commands: ["dig", "ping", "tcpdump", "traceroute"]
+        files: []
+        concepts: ["DNS resolution", "latency", "packet loss", "network stack"]
+
+      - id: "205.4"
+        description: "Configuring a network client to use DHCP"
+        tools: ["dhclient", "nmcli"]
+        commands: ["dhclient", "nmcli con mod"]
+        files: ["/etc/network/interfaces", "/etc/netplan/"]
+        concepts: ["DHCP", "dynamic addressing", "lease management"]
+
+      - id: "205.5"
+        description: "Configuring network interfaces statically"
+        tools: ["ip", "netplan", "nmcli"]
+        commands: ["ip addr add", "netplan apply", "nmcli con mod"]
+        files: ["/etc/network/interfaces", "/etc/netplan/*.yaml"]
+        concepts: ["static IP", "manual configuration", "routing tables"]
+
+  - domain_id: "206"
+    name: "System Maintenance"
+    objectives:
+      - id: "206.1"
+        description: "Make and install programs from source"
+        tools: ["make", "gcc", "configure"]
+        commands: ["./configure", "make", "make install"]
+        files: []
+        concepts: ["build systems", "compiling from source", "Makefile"]
+
+      - id: "206.2"
+        description: "Backup operations"
+        tools: ["tar", "rsync", "cpio"]
+        commands: ["tar", "rsync", "cpio"]
+        files: []
+        concepts: ["full backup", "incremental backup", "restoration"]
+
+      - id: "206.3"
+        description: "Notify users on system-related issues"
+        tools: ["wall", "write", "mail"]
+        commands: ["wall", "write", "mail"]
+        files: ["/etc/motd"]
+        concepts: ["user notifications", "broadcast messaging", "system alerts"]
+
 
