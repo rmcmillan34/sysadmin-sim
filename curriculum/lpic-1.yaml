@@ -1,0 +1,182 @@
+exam: "LPIC-1"
+version: "5.0"
+domains:
+  - domain_id: "101"
+    name: "System Architecture"
+    objectives:
+      - id: "101.1"
+        description: "Determine and configure hardware settings"
+        tools: ["lsusb", "lspci", "lsmod", "modprobe"]
+        commands: ["lsusb", "lspci", "lsmod", "modprobe"]
+        files: ["/proc", "/sys", "/dev"]
+        concepts: ["sysfs", "udev", "dbus"]
+
+      - id: "101.2"
+        description: "Boot the system"
+        tools: ["dmesg", "journalctl"]
+        commands: ["dmesg", "journalctl"]
+        files: ["/boot", "/etc/fstab"]
+        concepts: ["bootloader", "initramfs", "kernel"]
+
+      - id: "101.3"
+        description: "Change runlevels / boot targets and shutdown or reboot system"
+        tools: ["systemctl", "shutdown", "reboot"]
+        commands: ["systemctl", "shutdown", "reboot"]
+        files: ["/etc/systemd/"]
+        concepts: ["runlevels", "systemd targets"]
+        
+- domain_id: "102"
+    name: "Linux Installation and Package Management"
+    objectives:
+      - id: "102.1"
+        description: "Design hard disk layout"
+        tools: ["fdisk", "parted", "lsblk", "df"]
+        commands: ["fdisk", "parted"]
+        files: ["/etc/fstab"]
+        concepts: ["partitioning", "mount points", "disk layout"]
+
+      - id: "102.2"
+        description: "Install a boot manager"
+        tools: ["grub-install", "grub-mkconfig"]
+        commands: ["grub-install", "grub-mkconfig"]
+        files: ["/boot/grub/"]
+        concepts: ["boot manager", "bootloader", "GRUB"]
+
+      - id: "102.3"
+        description: "Manage shared libraries"
+        tools: ["ldconfig", "ldd"]
+        commands: ["ldconfig", "ldd"]
+        files: ["/etc/ld.so.conf", "/etc/ld.so.cache"]
+        concepts: ["shared libraries", "dynamic linking"]
+
+      - id: "102.4"
+        description: "Use Debian package management"
+        tools: ["dpkg", "apt", "apt-cache"]
+        commands: ["dpkg", "apt install", "apt update", "apt remove"]
+        files: ["/etc/apt/"]
+        concepts: ["Debian packages", "APT", "package dependencies"]
+
+      - id: "102.5"
+        description: "Use RPM and YUM package management"
+        tools: ["rpm", "yum", "dnf"]
+        commands: ["rpm", "yum install", "yum remove", "yum update"]
+        files: ["/etc/yum.repos.d/"]
+        concepts: ["RPM packages", "YUM", "DNF", "repositories"]
+
+      - id: "102.6"
+        description: "Linux as a virtualization guest"
+        tools: ["virt-manager", "virt-install", "lsmod", "dmesg"]
+        commands: ["lsmod", "dmesg"]
+        files: ["/etc/libvirt/", "/proc/cpuinfo"]
+        concepts: ["virtualization", "KVM", "guest additions"]
+
+- domain_id: "103"
+    name: "GNU and Unix Commands"
+    objectives:
+      - id: "103.1"
+        description: "Work on the command line"
+        tools: ["bash", "sh"]
+        commands: ["ls", "cd", "pwd", "echo", "clear", "exit"]
+        files: []
+        concepts: ["shell environment", "interactive commands"]
+
+      - id: "103.2"
+        description: "Process text streams using filters"
+        tools: ["grep", "cut", "sort", "uniq", "tr"]
+        commands: ["grep", "cut", "sort", "uniq", "tr"]
+        files: []
+        concepts: ["stdin/stdout", "stream filtering", "pipeline"]
+
+      - id: "103.3"
+        description: "Perform basic file management"
+        tools: ["cp", "mv", "rm", "mkdir", "rmdir"]
+        commands: ["cp", "mv", "rm", "mkdir", "rmdir"]
+        files: []
+        concepts: ["file operations", "directory structure"]
+
+      - id: "103.4"
+        description: "Use streams, pipes and redirects"
+        tools: ["|", ">", ">>", "<"]
+        commands: ["|", ">", ">>", "<"]
+        files: []
+        concepts: ["redirection", "pipe chaining", "data flow"]
+
+      - id: "103.5"
+        description: "Create, monitor and kill processes"
+        tools: ["ps", "top", "kill", "killall", "jobs"]
+        commands: ["ps", "top", "kill", "killall", "jobs"]
+        files: []
+        concepts: ["foreground/background processes", "signals"]
+
+      - id: "103.6"
+        description: "Modify process execution priorities"
+        tools: ["nice", "renice"]
+        commands: ["nice", "renice"]
+        files: []
+        concepts: ["scheduling", "CPU time", "priority levels"]
+
+      - id: "103.7"
+        description: "Search text files using regular expressions"
+        tools: ["grep", "egrep", "sed"]
+        commands: ["grep", "egrep", "sed"]
+        files: []
+        concepts: ["regex", "pattern matching", "text parsing"]
+
+      - id: "103.8"
+        description: "Perform basic file editing operations using vi"
+        tools: ["vi", "vim"]
+        commands: ["vi", "vim"]
+        files: []
+        concepts: ["modal editing", "insert/delete/save/quit", "navigation keys"]
+
+  - domain_id: "104"
+    name: "Devices, Linux Filesystems, Filesystem Hierarchy Standard"
+    objectives:
+      - id: "104.1"
+        description: "Create partitions and filesystems"
+        tools: ["fdisk", "parted", "mkfs"]
+        commands: ["fdisk", "parted", "mkfs.ext4", "mkfs.xfs"]
+        files: ["/etc/fstab"]
+        concepts: ["partition tables", "MBR", "GPT", "filesystem types"]
+
+      - id: "104.2"
+        description: "Maintain the integrity of filesystems"
+        tools: ["fsck", "tune2fs", "e2fsck"]
+        commands: ["fsck", "tune2fs", "e2fsck"]
+        files: []
+        concepts: ["superblocks", "consistency check", "filesystem health"]
+
+      - id: "104.3"
+        description: "Control mounting and unmounting of filesystems"
+        tools: ["mount", "umount", "blkid"]
+        commands: ["mount", "umount", "blkid"]
+        files: ["/etc/fstab"]
+        concepts: ["mount points", "device UUIDs", "permissions"]
+
+      - id: "104.4"
+        description: "Manage disk quotas"
+        tools: ["quota", "edquota", "repquota", "quotaon"]
+        commands: ["quota", "edquota", "repquota", "quotaon"]
+        files: ["/etc/fstab", "/aquota.user", "/aquota.group"]
+        concepts: ["user quotas", "group quotas", "filesystem limits"]
+
+      - id: "104.5"
+        description: "Manage file permissions and ownership"
+        tools: ["chmod", "chown", "umask"]
+        commands: ["chmod", "chown", "umask"]
+        files: []
+        concepts: ["permission modes", "user/group/other", "numeric and symbolic modes"]
+
+      - id: "104.6"
+        description: "Create and change hard and symbolic links"
+        tools: ["ln"]
+        commands: ["ln -s", "ln"]
+        files: []
+        concepts: ["hard links", "symlinks", "inode reference"]
+
+      - id: "104.7"
+        description: "Find system files and place files in the correct location"
+        tools: ["find", "locate", "updatedb"]
+        commands: ["find", "locate", "which", "whereis"]
+        files: []
+        concepts: ["FHS", "file discovery", "command paths"]
