@@ -23,6 +23,6 @@ RUN apt-get update && \
 
 # Set up sysadmin user
 COPY setup-sysadmin-user.sh /tmp/setup-sysadmin-user.sh
-RUN chmod +x /tmp/setup-sysadmin-user.sh && /tmp/setup-sysadmin-user.sh && rm /tmp/setup-sysadmin-user.sh
+RUN chmod +x /tmp/setup-sysadmin-user.sh && bash -x /tmp/setup-sysadmin-user.sh && rm /tmp/setup-sysadmin-user.sh
 
 SHELL ["/bin/bash", "-c"]
