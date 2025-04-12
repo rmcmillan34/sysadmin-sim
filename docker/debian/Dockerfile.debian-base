@@ -21,4 +21,8 @@ RUN apt-get update && \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# Set up sysadmin user
+COPY setup-sysadmin-user.sh /tmp/setup-sysadmin-user.sh
+RUN chmod +x /tmp/setup-sysadmin-user.sh && /tmp/setup-sysadmin-user.sh && rm /tmp/setup-sysadmin-user.sh
+
 SHELL ["/bin/bash", "-c"]
