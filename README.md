@@ -16,7 +16,9 @@
    ▄█    ███ ███  ███   ███   ███ ███    ███ ███▌    ▄   ███    ███     ███     ███    ███   ███    ███ 
  ▄████████▀  █▀    ▀█   ███   █▀  ████████▀  █████▄▄██   ███    █▀     ▄████▀    ▀██████▀    ███    ███ 
                                              ▀                                               ███    ███ 
-                                                                                         [![Build Base Images](https://github.com/rmcmillan34/sysadmin-simulator/actions/workflows/build-base-images.yml/badge.svg)](https://github.com/rmcmillan34/sysadmin-simulator/actions/workflows/build-base-images.yml)
+
+
+![Build Base Images](https://github.com/rmcmillan34/sysadmin-simulator/actions/workflows/build-base-images.yml/badge.svg)
                                                                         
 **SysAdmin Simulator** is a command-line based Linux learning environment where you solve realistic system administration tickets — just like a real sysadmin. Practice your Linux+, LPIC, LFCS, and RHCSA skills by troubleshooting live systems, navigating user requests, and solving challenges that simulate real-world Linux issues.
 
