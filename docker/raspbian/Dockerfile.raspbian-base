@@ -1,0 +1,23 @@
+FROM arm64v8/debian:bookworm
+
+LABEL maintainer="you@example.com"
+LABEL org.opencontainers.image.source="https://github.com/YOURORG/sysadmin-simulator"
+LABEL stage="base"
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG en_US.UTF-8
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      bash \
+      sudo \
+      openssh-server \
+      iproute2 \
+      iputils-ping \
+      net-tools \
+      systemd \
+      lsb-release && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+SHELL ["/bin/bash", "-c"]
