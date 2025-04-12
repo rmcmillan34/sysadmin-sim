@@ -139,6 +139,89 @@ The simulator uses a **hybrid Docker model**:
 - Tagged by version, architecture, and distribution
 - Includes base image and per-ticket images
 
+### 9.5 Registry Strategy and Release Management
+
+This project uses a hybrid registry strategy to support CI automation and public discoverability:
+
+- ✅ **GitHub Container Registry (GHCR)**:  
+  Used for automated multi-architecture builds via GitHub Actions. All tagged releases and branch builds are published here.
+  - Versioned containers per ticket and per base image
+  - Aligned with GitHub Releases and CI/CD
+
+- ✅ **Docker Hub**:  
+  Reserved for **manual uploads of major public releases**. This makes it easier for external users to find and pull containers with minimal configuration.
+
+| Purpose                  | GHCR                  | Docker Hub           |
+|--------------------------|-----------------------|----------------------|
+| CI/CD automation         | ✅ Fully integrated    | ❌ Manual setup only |
+| Pull limits              | ✅ Higher for GitHub users | ⚠️ Rate limited     |
+| Public discoverability   | Moderate              | ✅ High              |
+| Scope granularity        | Per-repo + org access | Public/private only |
+| Use case                 | Development/testing   | Production/public    |
+
+---
+
+### 9.6 Supported Linux Distributions
+
+Tickets and base images are built on a defined set of supported distributions to ensure consistency across testing and challenge environments.
+
+| Distribution    | Purpose                                    | Notes                     |
+|------------------|--------------------------------------------|----------------------------|
+| **Ubuntu (LTS)** | ✅ Default base image                       | Only Long-Term Support releases |
+| **Debian**       | ✅ General compatibility, apt-based         | Stable and universal       |
+| **Fedora**       | ✅ RHCSA-aligned platform                   | Latest packages, dnf-based |
+| **CentOS/Rocky** | ✅ RHCSA-compatible legacy support          | Long-term RH-like behavior |
+| **Alpine**       | ⚠️ Minimal image for tight environments     | Not all GNU tools available |
+| **Raspbian**     | ✅ Raspberry Pi target (ARM64 only)         | Official Pi OS if not Raspbian |
+
+Raspbian (or Raspberry Pi OS) is assumed to be ARM64-only for simplicity.
+
+Each ticket will declare its compatible base image using the `compatible_distros` field. Only tickets that work for a given container's distro should be run in that environment.
+
+---
+
+### 9.7 Base Distibution Release Policy
+
+To ensure stability and consistency, all container images must use the latest **stable, non-rolling** major release of each supported distribution. This applies to all supported distros — not just Ubuntu.
+
+| Distribution | Policy                                     |
+|--------------|--------------------------------------------|
+| Ubuntu       | Use only Long-Term Support (LTS) releases  |
+| Debian       | Use only the latest stable release         |
+| Fedora       | Use only the latest stable major release   |
+| Rocky/CentOS | Use latest stable from supported branches  |
+| Alpine       | Use the latest stable major release        |
+| Raspbian     | Use latest official Raspberry Pi OS (64-bit)
+
+Rolling, beta, nightly, or edge releases are **explicitly not supported** to avoid compatibility drift and tooling inconsistency.
+
+---
+
+### 9.8 Checker Script Validation Specification (Planned)
+
+Each ticket's checker script will be extended to:
+- Detect the running architecture (`amd64`, `arm64`)
+- Detect the distribution (`lsb_release`, `/etc/os-release`)
+- Exit early or warn if the script is being run in an unsupported container environment
+
+This will be formally defined in `docs/checker-script-spec.md` (to be created).
+
+```bash
+#!/bin/bash
+ARCH=$(uname -m)
+DISTRO=$(grep "^ID=" /etc/os-release | cut -d= -f2)
+
+if [[ "$ARCH" != "x86_64" && "$ARCH" != "aarch64" ]]; then
+  echo "Unsupported architecture: $ARCH"
+  exit 1
+fi
+
+if [[ "$DISTRO" != "ubuntu" && "$DISTRO" != "debian" ]]; then
+  echo "Unsupported distribution: $DISTRO"
+  exit 1
+fi
+```
+
 ---
 
 ## 10. Learning Objective Mapping
