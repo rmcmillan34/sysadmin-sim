@@ -113,6 +113,27 @@ Releases include multi-arch builds (`amd64`, `arm64`).
 
 ---
 
+## 🐳 Base Docker Images
+
+The simulator uses per-distro base images to create clean, reproducible learning environments.
+
+Base images are hosted on [GitHub Container Registry (GHCR)](https://ghcr.io) and tagged by distro, version, and architecture.
+
+### Example Tags
+
+| Distro  | Arch   | Tag |
+|---------|--------|-----|
+| Ubuntu  | amd64  | `ghcr.io/rmcmillan34/sysadmin-sim-ubuntu-base:ubuntu-22.04-amd64` |
+| Ubuntu  | arm64  | `ghcr.io/yrmcmillan34/sysadmin-sim-ubuntu-base:ubuntu-22.04-arm64` |
+
+You can pull these directly:
+
+```bash
+docker pull ghcr.io/rmcmillan34/sysadmin-sim-ubuntu-base:ubuntu-22.04-amd64
+```
+
+---
+
 ## 🧪 Contributing
 
 We welcome issues, feature requests, and pull requests!
@@ -131,7 +152,7 @@ We welcome issues, feature requests, and pull requests!
 - RHCSA, LPIC-2 expansions
 - More gamified challenge modes
 
-See full roadmap: [roadmap.md](docs/roadmap.md)
+See full roadmap: [roadmap.md](docs/roadmap.md) (TODO)
 
 ---
 
