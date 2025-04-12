@@ -235,3 +235,46 @@ Exam-mode containers will be generated at runtime by dynamically selecting ticke
 - [`requirements.md`](./requirements.md) → Section **11. Exam Simulation Framework**
 
 ---
+
+## [DD-012] Offline Support: Package Installation
+
+### Decision
+Tickets that involve package installation must be compatible with offline environments. Containers will not assume access to external package repositories.
+
+### Rationale
+- The simulator may be deployed in air-gapped environments or containers with no outbound internet access.
+- Ensuring reproducibility of ticket behavior offline improves portability and usability in CTF-style labs, classrooms, and training scenarios.
+
+### Implementation Notes
+- Docker images will preload commonly used packages that appear in tickets.
+- Optional: a lightweight local package repository may be bundled into the image.
+- Package managers (`apt`, `yum`, `dnf`) may be stubbed or wrapped to simulate installation where appropriate.
+- Ticket authors should avoid requiring new package installation unless the package is pre-installed.
+
+### Related Metadata Fields
+- `requires_package_install: true|false`
+- `offline_safe: true|false`
+
+---
+
+## [DD-013] Offline Support: Networking Simulation
+
+### Decision
+Tickets that involve networking will use simulated services and loopback interfaces to allow functionality in offline environments.
+
+### Rationale
+- Containers may be isolated from the host network or used in restricted labs.
+- External hosts (e.g., google.com) cannot be relied on for validation.
+- Controlled test environments improve reliability and enable fully offline simulation.
+
+### Implementation Notes
+- Use `localhost`, `127.0.0.1`, or Docker-internal interfaces for connectivity tickets.
+- Populate `/etc/hosts` with dummy domain names for DNS simulation.
+- Allow ticket `setup.sh` scripts to launch local mock services (e.g., netcat or mini HTTP servers).
+- Avoid reliance on real-world DNS or external connectivity in all default tickets.
+
+### Related Metadata Fields
+- `requires_network: true|false`
+- `offline_safe: true|false`
+
+---
