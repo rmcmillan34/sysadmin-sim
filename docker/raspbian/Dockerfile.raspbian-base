@@ -1,7 +1,7 @@
 FROM arm64v8/debian:bookworm
 
-LABEL maintainer="you@example.com"
-LABEL org.opencontainers.image.source="https://github.com/YOURORG/sysadmin-simulator"
+LABEL maintainer="ryan.j.mcmillan34@gmail.com"
+LABEL org.opencontainers.image.source="https://github.com/rmcmillan34/sysadmin-simulator"
 LABEL stage="base"
 
 ENV DEBIAN_FRONTEND=noninteractive
