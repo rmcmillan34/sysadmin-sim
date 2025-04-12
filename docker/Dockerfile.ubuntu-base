@@ -1,0 +1,27 @@
+FROM ubuntu:22.04
+
+LABEL maintainer="you@example.com"
+LABEL org.opencontainers.image.source="https://github.com/rmcmillan34/sysadmin-simulator"
+LABEL stage="base"
+
+# Avoid interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Basic tools for ticket challenges
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      bash \
+      curl \
+      ca-certificates \
+      sudo \
+      iproute2 \
+      iputils-ping \
+      openssh-server \
+      net-tools \
+      systemd \
+      lsb-release && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Default shell
+SHELL ["/bin/bash", "-c"]
