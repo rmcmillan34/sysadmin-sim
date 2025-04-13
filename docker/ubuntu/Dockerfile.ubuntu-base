@@ -37,5 +37,11 @@ COPY sshd_sysadmin.conf /tmp/sshd_sysadmin.conf
 COPY sshd_rootadmin.conf /tmp/sshd_rootadmin.conf
 RUN chmod +x /tmp/setup-openssh.sh && /tmp/setup-openssh.sh && rm /tmp/setup-openssh.sh
 
+# Set up Entrypoint
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 # Default shell
 SHELL ["/bin/bash", "-c"]
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

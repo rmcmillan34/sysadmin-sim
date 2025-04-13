@@ -82,13 +82,14 @@ jobs:
       - name: Copy shared sysadmmin setup script into distro
         run: cp docker/setup/setup-sysadmin-user.sh docker/${{ matrix.distro }}/
 
-      - name: Copy shared sshd setup files and scripts
+      - name: Copy shared setup files and scripts
         run: |
           cp docker/setup/sshd_sysadmin.conf docker/${{ matrix.distro }}/
           cp docker/setup/sshd_rootadmin.conf docker/${{ matrix.distro }}/
           cp docker/setup/setup-openssh.sh docker/${{ matrix.distro }}/
           cp docker/setup/login-banner.player.txt docker/${{ matrix.distro }}/
           cp docker/setup/login-banner.admin.txt docker/${{ matrix.distro }}/
+          cp docker/setup/entrypoint.sh docker/${{ matrix.distro }}/
 
       - name: Build and Push Image ${{ matrix.distro }}:${{ matrix.version }}-${{ matrix.arch }}
         uses: docker/build-push-action@v5
