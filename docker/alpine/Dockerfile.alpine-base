@@ -44,3 +44,4 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 RUN echo "ENTRYPOINT IS BEING SET"
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+RUN echo "[✓] Final layer — Dockerfile complete"
