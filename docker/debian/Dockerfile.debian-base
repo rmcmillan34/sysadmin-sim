@@ -25,4 +25,14 @@ RUN apt-get update && \
 COPY setup-sysadmin-user.sh /tmp/setup-sysadmin-user.sh
 RUN chmod +x /tmp/setup-sysadmin-user.sh && bash -x /tmp/setup-sysadmin-user.sh && rm /tmp/setup-sysadmin-user.sh
 
+# SSH banner files
+COPY login-banner.player.txt /tmp/login-banner.player.txt
+COPY login-banner.admin.txt /tmp/login-banner.admin.txt
+
+# Setup SSH
+COPY setup-openssh.sh /tmp/setup-openssh.sh
+COPY sshd_sysadmin.conf /tmp/sshd_sysadmin.conf
+COPY sshd_rootadmin.conf /tmp/sshd_rootadmin.conf
+RUN chmod +x /tmp/setup-openssh.sh && /tmp/setup-openssh.sh && rm /tmp/setup-openssh.sh
+
 SHELL ["/bin/bash", "-c"]

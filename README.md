@@ -54,12 +54,46 @@ cd sysadmin-simulator
 docker compose up
 ```
 
-SSH into the simulator:
+---
+
+## 🔐 Accessing the Simulator
+
+Once your container is running, you can access the simulator in two ways:
+
+### 🧪 Local Shell Access
+
+If you run the container interactively:
 
 ```bash
-ssh sysadmin@localhost -p 2222
-# password: training
+docker run -it ghcr.io/rmcmillan34/sysadmin-sim-ubuntu-base:ubuntu-22.04-amd64
 ```
+
+You’ll be dropped directly into a shell as the `sysadmin` user:
+
+- **Username:** `sysadmin`
+- **Password:** *(not required for local shell)*
+
+### 🌐 Remote SSH Access
+
+If you expose the container’s SSH ports, you can connect via SSH in two modes:
+
+| Mode             | Username | Password   | Port  | Purpose     |
+|------------------|----------|------------|-------|-|
+| **Player Mode**   | `sysadmin` | `sysadmin` | `2222` | Solve tickets and train Linux skills  |
+| **Admin Mode**    | `root`     | `adminroot` | `2223` | Administer or debug the environment   |
+
+```bash
+# Player login (recommended)
+ssh sysadmin@localhost -p 2222
+
+# Admin/maintenance login
+ssh root@localhost -p 2223
+
+```
+
+> ⚠️ These default credentials are for development/testing only. You should override them in production deployments.
+
+---
 
 Start solving tickets:
 

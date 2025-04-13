@@ -1,0 +1,7 @@
+╔═════════════════════════════════════════════╗
+║    SysAdmin Simulator – Maintenance Mode    ║
+╟─────────────────────────────────────────────╢
+║ Root-level access granted.                  ║
+║ Intended for diagnostics and environment    ║
+║ maintenance only. Do not solve tickets.     ║
+╚═════════════════════════════════════════════╝

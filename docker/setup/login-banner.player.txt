@@ -1,0 +1,7 @@
+╔═════════════════════════════════════════════╗
+║      SysAdmin Simulator – Player Mode       ║
+╟─────────────────────────────────────────────╢
+║ Welcome, sysadmin.                          ║
+║ Your mission: solve real-world Linux issues ║
+║ Type `view-ticket` to begin your task.      ║
+╚═════════════════════════════════════════════╝
