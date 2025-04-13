@@ -84,7 +84,7 @@ jobs:
 
       - name: Copy shared sshd setup files and scripts
         run: |
-          cp docker/setup/sshd_sysaddin.conf docker/${{ matrix.distro }}/
+          cp docker/setup/sshd_sysadmin.conf docker/${{ matrix.distro }}/
           cp docker/setup/sshd_rootadmin.conf docker/${{ matrix.distro }}/
           cp docker/setup/setup-openssh.sh docker/${{ matrix.distro }}/
           cp docker/setup/login-banner.player.txt docker/${{ matrix.distro }}/
