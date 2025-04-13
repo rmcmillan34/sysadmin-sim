@@ -169,6 +169,18 @@ You can pull these directly:
 docker pull ghcr.io/rmcmillan34/sysadmin-sim-ubuntu-base:ubuntu-22.04-amd64
 ```
 
+### 📦 Pulling Specific Versions from GitHub Packages
+To view or pull a specific version of a base image:
+
+1. Visit the GHCR package listing
+2. Select the tag/version you want to pull
+3. Use the docker pull command provided for that tag, for example:
+
+```bash
+docker pull ghcr.io/rmcmillan34/sysadmin-sim-<distribution-base:<distribution-<version-<architecture>
+```
+These builds are automatically updated via GitHub Actions on each push to main.
+
 ---
 
 ## 🧪 Contributing
@@ -177,7 +189,7 @@ We welcome issues, feature requests, and pull requests!
 
 ### Quick links:
 - [Setup Guide](docs/setup-guide.md)
-- [Ticket Spec](docs/ticket-spec.md)
+- [Developer Ticket Spec](docs/ticket-spec.md)
 - [Contributing Guidelines](docs/contributing.md)
 
 ---
