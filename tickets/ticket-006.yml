@@ -1,0 +1,45 @@
+id: ticket-006
+title: "Listing Active Processes"
+difficulty: easy
+question_type: multiple_choice
+description: |
+  Which of the following commands provides a static snapshot of currently running processes?
+
+  A) ps
+  B) jobs
+  C) kill
+  D) free
+
+  🔧 To solve this challenge:
+  - Use `man` or try the commands to determine which one shows a listing of running processes.
+  - You’re not looking for memory usage, background jobs, or signal-based commands.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /tmp/ticket-006-answer.txt
+
+  ✍️ Example:
+      echo A > /tmp/ticket-006-answer.txt
+
+objectives:
+  - The answer file /tmp/ticket-006-answer.txt must contain the letter "A"
+
+hints:
+  - `ps aux` is often used to see all active processes.
+  - This command is not interactive like `top`.
+
+timeout: 300
+flag: LINUX{7fc56270e7a70fa81a5935b72eacbe29}
+tags: [processes, monitoring]
+check_script: checks/ticket-006-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["ps"]
+    commands: ["ps"]
+    concepts: ["process snapshot", "process monitoring"]

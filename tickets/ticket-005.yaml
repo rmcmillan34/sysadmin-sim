@@ -1,0 +1,47 @@
+id: ticket-005
+title: "System Load Averages"
+difficulty: medium
+question_type: multiple_choice
+description: |
+  You need to check the system load averages over the past 1, 5, and 15 minutes to determine if it's under heavy CPU stress.
+
+  Which command provides this information?
+
+  A) htop
+  B) top
+  C) uptime
+  D) netstat
+
+  🔧 To solve this challenge:
+  - Try running each command and see which one includes load average data.
+  - Look for the command that displays three load values as part of its standard output.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /home/sysadmin/ticket-005-answer.txt
+
+  ✍️ Example:
+      echo C > /home/sysadmin/ticket-005-answer.txt
+
+objectives:
+  - The answer file /home/sysadmin/ticket-005-answer.txt must contain the letter "C"
+
+hints:
+  - Load averages are typically shown alongside uptime and user count.
+  - You’re not looking for interactive process viewers.
+
+timeout: 300
+flag: LINUX{45c48cce2e2d7fbdea1afc51c7c6ad26}  # MD5 of 'C'
+tags: [load, uptime, monitoring]
+check_script: checks/ticket-005-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["uptime"]
+    commands: ["uptime"]
+    concepts: ["load averages", "system performance"]

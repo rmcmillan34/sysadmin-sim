@@ -1,0 +1,47 @@
+id: ticket-009
+title: "Killing by Name"
+difficulty: easy
+question_type: multiple_choice
+description: |
+  You want to stop a process by its name rather than its PID.
+
+  Which of the following commands is used to terminate a process by name?
+
+  A) pkill
+  B) kill
+  C) top
+  D) ps
+
+  🔧 To solve this challenge:
+  - Use `man` pages to compare how `kill` and `pkill` behave.
+  - Try running a background process and see which tool works using only the process name.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /home/sysadmin/ticket-009-answer.txt
+
+  ✍️ Example:
+      echo A > /home/sysadmin/ticket-009-answer.txt
+
+objectives:
+  - The answer file /home/sysadmin/ticket-009-answer.txt must contain the letter "A"
+
+hints:
+  - `kill` needs a PID, `pkill` uses the name.
+  - Don't confuse `ps` or `top` with signal commands.
+
+timeout: 300
+flag: LINUX{c81e728d9d4c2f636f067f89cc14862c}
+tags: [processes, pkill, signals]
+check_script: checks/ticket-009-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["pkill"]
+    commands: ["pkill"]
+    concepts: ["terminate by name", "signals", "process control"]

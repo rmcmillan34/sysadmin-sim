@@ -1,0 +1,48 @@
+id: ticket-004
+title: "Terminating Processes"
+difficulty: easy
+question_type: multiple_choice
+description: |
+  A developer asks how to stop a process that is consuming too many resources.
+  You're reviewing common Linux tools to terminate a process using its PID (Process ID).
+
+  Which command should you use?
+
+  A) kill
+  B) stop
+  C) shutdown
+  D) break
+
+  🔧 To solve this challenge:
+  - Review the `man` pages or try the commands to see which accepts a PID and terminates a process.
+  - Determine which command is specifically designed to send termination signals.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /tmp/ticket-004-answer.txt
+
+  ✍️ Example:
+      echo A > /tmp/ticket-004-answer.txt
+
+objectives:
+  - The answer file /tmp/ticket-004-answer.txt must contain the letter "A"
+
+hints:
+  - You’re looking for a command that works directly with numeric PIDs.
+  - `shutdown` is for powering off the system.
+
+timeout: 300
+flag: LINUX{c9f0f895fb98ab9159f51fd0297e236d}
+tags: [processes, troubleshooting, signals]
+check_script: checks/ticket-004-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["kill"]
+    commands: ["kill"]
+    concepts: ["PIDs", "signals", "process termination"]

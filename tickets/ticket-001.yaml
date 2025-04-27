@@ -1,59 +1,46 @@
 id: ticket-001
-title: "List files in the tools directory"
+title: "Identifying CPU Usage"
 difficulty: easy
+question_type: multiple_choice
 description: |
-  A developer wants to know what files are located in the /usr/bin directory.
-  Use Linux commands to change into the directory and list its contents.
+  A junior administrator wants to know which command can be used to monitor real-time CPU usage by processes.
+  Which of the following is the most appropriate tool for this purpose?
 
-  Save the output of your listing to /tmp/tools_listing.txt
+  A) free  
+  B) ps  
+  C) top  
+  D) who
+
+  🔧 To solve this challenge:
+  - Investigate each of the commands listed using `man` or try running them.
+  - Determine which one continuously displays live process activity and CPU usage.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /tmp/ticket-001-answer.txt
+
+  ✍️ Example:
+      echo C > /tmp/ticket-001-answer.txt
 
 objectives:
-  - Navigate to the /usr/bin directory
-  - Use the `ls` command to list visible files
-  - Redirect the output to /tmp/tools_listing.txt
+  - The answer file /tmp/ticket-001-answer.txt must contain the letter "C"
 
 hints:
-  - Use `cd /usr/bin` to enter the directory
-  - Use `ls > /tmp/tools_listing.txt` to save the output
+  - Try `man top` and compare it to `ps` or `free`.
+  - You're looking for a dynamic, real-time view of running processes.
 
 timeout: 300
-flag: LINUX{tools_directory_listed}
-tags: [navigation, shell, ls, cd]
-compatible_distros:
-  - ubuntu
-  - debian
-  - fedora
-  - rocky
-  - alpine
-architecture:
-  - amd64
-  - arm64
-  
+flag: LINUX{e4da3b7fbbce2345d7772b0674a318d5}
+tags: [cpu, monitoring, processes]
 check_script: checks/ticket-001-check.sh
 
-objectives_map:
+exam_objectives:
   - exam: "Linux+"
     version: "XK0-005"
-    domain: "3.0"
-    objective_id: "3.1"
-    objective_desc: "Use basic Linux commands"
-    tools:
-      commands: [cd, ls]
-      files: [/tmp/tools_listing.txt]
-      concepts: [directory navigation, output redirection]
-
-  - exam: "LPIC-1"
-    version: "5.0"
-    domain: "103"
-    objective_id: "103.2"
-    objective_desc: "Work on the command line"
-    tools:
-      commands: [cd, ls]
-
-  - exam: "LFCS"
-    version: "2024"
-    domain: "4"
-    objective_id: "4.1"
-    objective_desc: "Monitor and troubleshoot system performance and services"
-    tools:
-      commands: [ls]
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["top"]
+    commands: ["top"]
+    concepts: ["CPU usage", "real-time monitoring"]

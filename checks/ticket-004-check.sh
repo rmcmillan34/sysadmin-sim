@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# Check if the answer file exists and contains only the correct answer
-ANSWER_FILE="/tmp/ticket-001-answer.txt"
+ANSWER_FILE="/tmp/ticket-004-answer.txt"
 
 if [[ -f "$ANSWER_FILE" ]]; then
     ANSWER=$(tr -d '[:space:]' < "$ANSWER_FILE")
-    if [[ "$ANSWER" == "C" ]]; then
-        echo "Correct! Flag: LINUX{e4da3b7fbbce2345d7772b0674a318d5}"
+    if [[ "$ANSWER" == "A" ]]; then
+        echo "Correct! Flag: LINUX{c9f0f895fb98ab9159f51fd0297e236d}"
         exit 0
     else
         echo "Incorrect answer."

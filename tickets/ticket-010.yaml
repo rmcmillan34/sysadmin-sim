@@ -1,0 +1,48 @@
+id: ticket-010
+title: "Viewing Parent-Child Processes"
+difficulty: easy
+question_type: multiple_choice
+description: |
+  You need to display the parent/child relationships between running processes in a tree-like format.
+
+  Which command would you use?
+
+  A) ps  
+  B) pstree  
+  C) top  
+  D) kill
+
+  🔧 To solve this challenge:
+  - Review each command by using `man` pages or trying them.
+  - Find the command that shows a graphical process tree structure.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /tmp/ticket-010-answer.txt
+
+  ✍️ Example:
+      echo B > /tmp/ticket-010-answer.txt
+
+objectives:
+  - The answer file /tmp/ticket-010-answer.txt must contain the letter "B"
+
+hints:
+  - One command outputs a tree where parents and children are visually connected.
+  - `ps` gives a flat list; `pstree` gives a hierarchy.
+
+timeout: 300
+flag: LINUX{9d5ed678fe57bcca610140957afab571}
+tags: [pstree, process hierarchy]
+check_script: checks/ticket-010-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["pstree"]
+    commands: ["pstree"]
+    concepts: ["process hierarchy", "parent-child relationships"]
+

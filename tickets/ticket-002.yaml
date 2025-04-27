@@ -1,0 +1,46 @@
+id: ticket-002
+title: "Memory Monitoring"
+difficulty: easy
+question_type: multiple_choice
+description: |
+  You're troubleshooting a performance issue on a Linux server.
+  Which command would you use to view a summary of current RAM usage?
+
+  A) free
+  B) df
+  C) du
+  D) uptime
+
+  🔧 To solve this challenge:
+  - Use `man` pages or try running each command in your terminal.
+  - Identify the tool that shows total, used, and free memory (RAM).
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /tmp/ticket-002-answer.txt
+
+  ✍️ Example:
+      echo A > /tmp/ticket-002-answer.txt
+
+objectives:
+  - The answer file /tmp/ticket-002-answer.txt must contain the letter "A"
+
+hints:
+  - You're not looking for disk space or uptime.
+  - `free` is your friend for memory snapshots.
+
+timeout: 300
+flag: LINUX{7fc56270e7a70fa81a5935b72eacbe29}
+tags: [memory, monitoring, troubleshooting]
+check_script: checks/ticket-002-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["free"]
+    commands: ["free"]
+    concepts: ["RAM usage", "system memory", "performance monitoring"]

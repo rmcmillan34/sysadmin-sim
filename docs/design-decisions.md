@@ -29,6 +29,7 @@ Each ticket may include an `objectives_map` that links it to learning objectives
 - Linux+ (XK0-005)
 - LPIC-1 / LPIC-2
 - LFCS (2024)
+- RHCSA (9)
 
 ### Rationale
 - Ensures traceability between tickets and curriculum outcomes
@@ -309,3 +310,34 @@ flag: LINUX{e99a18c428cb38d5f260853678922e03}
 - `flag` (defined in each ticket YAML)
 - `check_script` (used to validate and optionally output the flag)
 
+---
+
+## [DD-015] Supported Question Types for SysAdmin Simulator
+**Decision Date:** 2025-04-27
+**Status:** Finalized
+
+
+### Decision
+To ensure that the SysAdmin Simulator effectively covers a wide range of praxtical Linux administration skills aligned with various certification exams, it is necessary to define a set of supported question types. The following question types are supported:
+
+| Type                       | Description |
+|----------------------------|-------------|
+| **multiple_choice**        | Learner selects the correct answer from provided options (A, B, C, D), writing the answer into a file |
+| **manpage_retrieval**      | Learner retrieves a specific piece of information from a man page or help documentation |
+| **command_demonstration**  | Learner executes a command or sequence of commands to achieve a specific result |
+| **file_manipulation**      | Learner creates, edits, or inspects files according to ticket objectives |
+| **scripting**              | Learner writes or modifies a script to automate an administrative task |
+| **configuration_fixing**   | Learner edits system configuration files to resolve an issue |
+| **system_state_validation**| Learner ensures that a system meets specified conditions (e.g., services running, ports open) |
+| **troubleshooting**        | Learner diagnoses and fixes broken services, processes, permissions, or configurations |
+
+Future ticket expansions may introduce additional types if necessary, provided they remain script-checkable.
+
+### Constraints
+- All challenge types must be script-checkable to ensure automation and reproducibility.
+- Each ticket must specify the `question_type` field in its YAML metadata.
+- Challenge types must remain consistent with the definitions documented in `question_types.md` and `ticket_spec.md`.
+
+---
+
+## [DD-016] 

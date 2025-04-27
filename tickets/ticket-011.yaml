@@ -1,0 +1,48 @@
+id: ticket-011
+title: "Understanding Process States"
+difficulty: medium
+question_type: multiple_choice
+description: |
+  You're investigating system processes and need to understand process states.
+
+  Which of the following states indicates that a process has terminated but still has an entry in the process table?
+
+  A) Running  
+  B) Sleeping  
+  C) Zombie  
+  D) Stopped
+
+  🔧 To solve this challenge:
+  - Review the meaning of different process states in Linux.
+  - Identify which state means the process is dead but not yet reaped by its parent.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /home/sysadmin/ticket-011-answer.txt
+
+  ✍️ Example:
+      echo E > /home/sysadmin/ticket-011-answer.txt
+
+objectives:
+  - The answer file /home/sysadmin/ticket-011-answer.txt must contain the letter "C"
+
+hints:
+  - Zombies are dead processes waiting for a parent process to read their exit code.
+  - Sleeping processes are still alive.
+
+timeout: 600
+flag: LINUX{45c48cce2e2d7fbdea1afc51c7c6ad26}
+tags: [process states, zombie processes, troubleshooting]
+check_script: checks/ticket-011-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["ps", "top"]
+    commands: ["ps", "top"]
+    concepts: ["process states", "zombie", "sleeping", "running"]
+

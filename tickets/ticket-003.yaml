@@ -1,0 +1,46 @@
+id: ticket-003
+title: "Changing Process Priority"
+difficulty: medium
+question_type: multiple_choice
+description: |
+  A process on your system is using too many CPU resources. You want to reduce its priority
+  without terminating it. Which command allows you to adjust the nice value of a running process?
+
+  A) renice  
+  B) ps  
+  C) pkill  
+  D) top
+
+  🔧 To solve this challenge:
+  - Review the `man` pages for each command listed.
+  - Identify the command used to *modify* the nice value of a process that's already running.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /home/sysadmin/ticket-003-answer.txt
+
+  ✍️ Example:
+      echo A > /home/sysadmin/ticket-003-answer.txt
+
+objectives:
+  - The answer file /home/sysadmin/ticket-003-answer.txt must contain the letter "A"
+
+hints:
+  - Look for a command that adjusts priority of running processes.
+  - `nice` is for starting new processes, not modifying existing ones.
+
+timeout: 600
+flag: LINUX{f1d3ff8443297732862df21dc4e57262}
+tags: [priority, scheduling, cpu, renice]
+check_script: checks/ticket-003-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["renice"]
+    commands: ["renice", "nice"]
+    concepts: ["process priority", "nice values", "CPU scheduling"]

@@ -1,0 +1,47 @@
+id: ticket-012
+title: "Process Scheduling Priorities"
+difficulty: medium
+question_type: multiple_choice
+description: |
+  You're tuning system performance by adjusting process priorities.
+
+  Which of the following best describes how Linux treats processes with lower nice values?
+
+  A) They receive less CPU time.  
+  B) They are scheduled earlier and receive more CPU time.  
+  C) They are paused until high-nice processes finish.  
+  D) They are automatically assigned to background tasks.
+
+  🔧 To solve this challenge:
+  - Review what lower nice values mean in terms of CPU priority.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /tmp/ticket-012-answer.txt
+
+  ✍️ Example:
+      echo A > /tmp/ticket-012-answer.txt
+
+objectives:
+  - The answer file /tmp/ticket-012-answer.txt must contain the letter "B"
+
+hints:
+  - Nice values affect CPU scheduling priority.
+  - A lower nice value means "less nice" = more aggressive CPU usage.
+
+timeout: 600
+flag: LINUX{b6d767d2f8ed5d21a44b0e5886680cb9}
+tags: [scheduling, priorities, nice]
+check_script: checks/ticket-012-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["nice", "renice"]
+    commands: ["nice", "renice"]
+    concepts: ["scheduling", "priority", "CPU time allocation"]
+

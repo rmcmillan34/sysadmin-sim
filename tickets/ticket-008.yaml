@@ -1,0 +1,47 @@
+id: ticket-008
+title: "Nice Value Ranges"
+difficulty: medium
+question_type: multiple_choice
+description: |
+  You're tuning a system's scheduler settings and are asked about valid `nice` values.
+
+  What is the valid range of nice values in Linux?
+
+  A) 0 to 20  
+  B) -20 to 19  
+  C) -5 to 5  
+  D) 1 to 10
+
+  🔧 To solve this challenge:
+  - Check the documentation for `nice` and `renice`.
+  - Identify the full range of nice values that Linux supports.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /tmp/ticket-008-answer.txt
+
+  ✍️ Example:
+      echo B > /tmp/ticket-008-answer.txt
+
+objectives:
+  - The answer file /tmp/ticket-008-answer.txt must contain the letter "B"
+
+hints:
+  - The lower the value, the higher the priority.
+  - Values can be negative for higher-priority processes.
+
+timeout: 600
+flag: LINUX{9ae0ea9e3c9c6e1b9b6252c8395efdc1}
+tags: [scheduling, nice, tuning]
+check_script: checks/ticket-008-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["nice"]
+    commands: ["nice", "renice"]
+    concepts: ["priority", "scheduler", "nice value range"]

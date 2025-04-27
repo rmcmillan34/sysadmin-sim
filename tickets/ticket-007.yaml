@@ -1,0 +1,47 @@
+id: ticket-007
+title: "Interactive Process Viewer"
+difficulty: easy
+question_type: multiple_choice
+description: |
+  You want to interactively sort, filter, and monitor system processes in real-time.
+
+  Which command provides this functionality?
+
+  A) top
+  B) watch
+  C) less
+  D) grep
+
+  🔧 To solve this challenge:
+  - Try each command and observe which one shows a constantly updating list of processes.
+  - Look for a command that supports keyboard shortcuts like `k` or `q`.
+  - Once you know the correct answer, write the corresponding letter (A, B, C, or D)
+    to the following file:
+
+      /home/sysadmin/ticket-007-answer.txt
+
+  ✍️ Example:
+      echo A > /home/sysadmin/ticket-007-answer.txt
+
+objectives:
+  - The answer file /home/sysadmin/ticket-007-answer.txt must contain the letter "A"
+
+hints:
+  - `top` is commonly used by sysadmins to view live process usage.
+  - `watch` just repeats other commands.
+
+timeout: 300
+flag: LINUX{e4da3b7fbbce2345d7772b0674a318d5}
+tags: [processes, interactive, tools]
+check_script: checks/ticket-007-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["top"]
+    commands: ["top"]
+    concepts: ["interactive monitoring", "real-time process view"]
