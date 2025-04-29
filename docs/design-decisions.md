@@ -340,4 +340,64 @@ Future ticket expansions may introduce additional types if necessary, provided t
 
 ---
 
-## [DD-016] 
+## [DD-016] Checker Script Handling of Solution Paths
+
+**Decision Date:** 2025-04-27
+**Status:** Finalized
+
+### Context:
+Each ticket specifies the expected solution file path (for multiple choice answers, command outputs, etc.) in its YAML structure, usually under the `objectives` field.
+
+At MVP stage, checker scripts are kept lightweight and bash-only. Therefore, reading YAML dynamically inside checkers is deferred to maintain simplicity and robustness across distributions.
+
+### Decision:
+- Checker scripts will **hardcode** the expected solution file path during the MVP phase.
+- Authors must manually synchronize the path between the ticket YAML (`objectives`) and the corresponding checker script.
+- Future versions may support dynamic parsing of ticket YAMLs via a `ticket-cli` or similar management tool.
+
+### Constraints:
+- Hardcoded paths must match the `objectives` field of their corresponding ticket YAML exactly.
+- Stretch goal: Refactor checkers to dynamically parse YAML using `yq`, `ticket-cli`, or equivalent tooling once MVP stability is achieved.
+
+---
+
+## [DD-017] Ticket Setup and Strikedown Scripts
+
+**Decision Date:** 2025-04-29
+**Status:** Finalized
+
+### Context:
+Some tickets require the system to be in a specific prepared state before a user attempts the challenge (e.g., background processes running, misconfigured services, corrupted filesystems). Similarly, after completion, the environment may need cleanup to avoid interfering with future tickets.
+
+Previously, all tickets assumed a static environment. As the simulator evolves to cover deeper real-world skills, dynamic ticket environments are required.
+
+
+### Decision:
+Each ticket may include two optional scripts:
+
+- `setup_script`: A bash script that is executed immediately before the ticket starts to setup necessary system conditions. This script may create files, start/stop services, or modify configurations to prepare the system for the challenge.
+
+- `strikedown_script`: A bash script that is executed immediately after the ticket is completed (success, failure, or timeout) to clean up any changes made during the challenge. This script may remove files, stop services, or revert configurations to restore the system to its original state.
+
+These scripts are referenced by relative path within the ticket YAML definition.
+
+If the scripts are not present, the ticket will run without any setup or teardown, as the challenged is presumed to be static.
+
+
+### Constraints:
+- Scripts must be self-contained and idempotent (able to run multiple times safely).
+- Scripts must clean up all resources they create (e.g., processes, temporary files).
+- Setup/strikedown scripts must be bash-compatible across supported distributions (Ubuntu, Debian, Fedora, Rocky, Alpine, RaspiOS).
+- Setup scripts must be designed to avoid interfering with unrelated system functionality.
+- Execution of setup/strikedown scripts must be controlled by the simulation engine (`ticket-cli` or equivalent).
+
+
+### Example Usage:
+```yaml
+setup_script: "setup/ticket-017-setup.sh"
+strikedown_script: "setup/ticket-017-strikedown.sh"
+```
+
+---
+
+## [DD-018] 

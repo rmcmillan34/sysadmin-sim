@@ -1,0 +1,77 @@
+id: ticket-013
+title: "Demonstrate CPU Monitoring with top"
+difficulty: easy
+question_type: command_demonstration
+description: |
+  A junior administrator needs to monitor live CPU usage by processes.
+
+  Your task:
+  - Run the `top` command.
+  - Identify the top 5 processes consuming the most CPU.
+  - Save the output of the top 5 processes into the following file:
+
+      /tmp/top_cpu_output.txt
+
+  🔧 To solve this challenge:
+  - Use `top` or similar tool to view running processes.
+  - Sort if necessary (hint: press 'P' to sort by CPU in `top`).
+  - Use `head` or `awk` if you need to filter down to 5 lines.
+  - Redirect the output into `/tmp/top_cpu_output.txt`.
+
+  ✍️ Example commands:
+      top -b -n 1 | head -20 > /tmp/top_cpu_output.txt
+
+objectives:
+  - The file /tmp/top_cpu_output.txt must exist and contain CPU usage information.
+
+hints:
+  - Use `man top` to understand how to run it in batch mode.
+  - Use `top` in batch mode (`top -b -n 1`) to capture output.
+  - Use `head` or `awk` to extract just the top few lines.
+  - Make sure the output includes process information, not just headers.
+
+timeout: 600
+flag: LINUX{0cc175b9c0f1b6a831c399e269772661}  # MD5 of 'a'
+tags: [cpu, monitoring, top, demonstration]
+check_script: checks/ticket-013-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["top", "head", "awk"]
+    commands: ["top", "head", "awk"]
+    concepts: ["CPU monitoring", "command redirection"]
+
+  - exam: "LPIC-1"
+    version: "5.0"
+    domain: "103"
+    domain_name: "GNU and Unix Commands"
+    objective_id: "103.2"
+    objective_description: "Process monitoring and management"
+    tools: ["top", "ps"]
+    commands: ["top", "ps"]
+    concepts: ["process monitoring", "system resource usage"]
+
+  - exam: "LFCS"
+    version: "2024"
+    domain: "1"
+    domain_name: "Operations Deployment"
+    objective_id: "1.3"
+    objective_description: "Monitor and troubleshoot system performance and services"
+    tools: ["top", "ps"]
+    commands: ["top", "ps"]
+    concepts: ["system performance", "CPU load"]
+
+  - exam: "RHCSA"
+    version: "9"
+    domain: "System monitoring and performance"
+    objective_id: "N/A"
+    objective_description: "Understand and monitor system performance using tools like `top` and `ps`"
+    tools: ["top", "ps"]
+    commands: ["top", "ps"]
+    concepts: ["system monitoring", "CPU usage"]
+

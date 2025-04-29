@@ -1,0 +1,72 @@
+id: ticket-014
+title: "List Active Processes with ps"
+difficulty: easy
+question_type: command_demonstration
+description: |
+  A junior admin wants to see all active processes running on the system, including full details like UID, PID, CPU, and memory usage.
+
+  Your task:
+  - Use the `ps` command to list all currently running processes.
+  - Capture the full output into the following file:
+
+      /home/sysadmin/ps_full_output.txt
+
+  🔧 To solve this challenge:
+  - Use options with `ps` to show extended information about all processes.
+  - Write the output directly into the specified file.
+
+  ✍️ Example commands:
+      ps aux > /home/sysadmin/ps_full_output.txt
+
+objectives:
+  - The file /home/sysadmin/ps_full_output.txt must exist and contain detailed process information.
+
+hints:
+  - Use `ps aux` to show all processes with full details.
+  - Remember to redirect the output using `>`.
+
+timeout: 600
+flag: LINUX{92eb5ffee6ae2fec3ad71c777531578f}  # MD5 of 'b'
+tags: [ps, processes, monitoring, command demonstration]
+check_script: checks/ticket-014-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["ps"]
+    commands: ["ps"]
+    concepts: ["process listing", "system monitoring"]
+
+  - exam: "LPIC-1"
+    version: "5.0"
+    domain: "103"
+    domain_name: "GNU and Unix Commands"
+    objective_id: "103.2"
+    objective_description: "Process monitoring and management"
+    tools: ["ps"]
+    commands: ["ps"]
+    concepts: ["process listing", "process attributes"]
+
+  - exam: "LFCS"
+    version: "2024"
+    domain: "1"
+    domain_name: "Operations Deployment"
+    objective_id: "1.3"
+    objective_description: "Monitor and troubleshoot system performance and services"
+    tools: ["ps"]
+    commands: ["ps"]
+    concepts: ["system processes"]
+
+  - exam: "RHCSA"
+    version: "9"
+    domain: "System monitoring and performance"
+    objective_id: "N/A"
+    objective_description: "Understand and monitor system performance using tools like `top` and `ps`"
+    tools: ["ps"]
+    commands: ["ps"]
+    concepts: ["process management", "CPU and memory usage"]
+

@@ -1,0 +1,53 @@
+id: ticket-015
+title: "Monitor Memory Usage with free"
+difficulty: easy
+question_type: command_demonstration
+description: |
+  You need to check the system's available and used memory.
+
+  Your task:
+  - Use the `free` command to display memory statistics.
+  - Capture the output into the following file:
+
+      /tmp/free_memory_output.txt
+
+  🔧 To solve this challenge:
+  - Use `free -h` to display memory usage in human-readable format (MB, GB).
+  - Redirect the output into the specified file.
+
+  ✍️ Example command:
+      free -h > /tmp/free_memory_output.txt
+
+objectives:
+  - The file /tmp/free_memory_output.txt must exist and contain memory statistics.
+
+hints:
+  - The `-h` option for `free` makes the output easier to read.
+  - Look for fields like "total", "used", and "free" memory.
+
+timeout: 600
+flag: LINUX{58c10d8d25c869239d1d39fb8bcbac2b}
+tags: [free, memory, monitoring, command demonstration]
+check_script: checks/ticket-015-check.sh
+
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    domain_name: "System Management"
+    objective_id: "1.1"
+    objective_description: "Given a scenario, monitor and optimize processes"
+    tools: ["free"]
+    commands: ["free"]
+    concepts: ["memory usage", "RAM monitoring"]
+
+  - exam: "LFCS"
+    version: "2024"
+    domain: "1"
+    domain_name: "Operations Deployment"
+    objective_id: "1.3"
+    objective_description: "Monitor and troubleshoot system performance and services"
+    tools: ["free"]
+    commands: ["free"]
+    concepts: ["memory availability", "RAM usage"]
+

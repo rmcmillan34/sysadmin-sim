@@ -26,6 +26,7 @@ Each ticket is a `.yaml` file stored in the `/tickets/` directory.
 | `description`   | string    | ✅       | Detailed multi-line description of the problem |
 | `objectives`    | list      | ✅       | List of things the user must achieve or fix |
 | `question_type` | string    | ✅       | Type of question (e.g., `command_demo`, `scripting`, `config`, etc. see Appendix below) |
+| `check_script`  | string    | ✅        | Path to a custom checker script for validation |
 | `offline_safe`  | boolean   | ❌       | Whether the ticket is fully operable in an offline environment |
 | `requires_network`| boolean | ❌       | Whether the ticket expects external or loopback networking to function |
 | `requires_package_install`| boolean   | ❌       | Whether installation of packages is part of the challenge |
@@ -33,8 +34,9 @@ Each ticket is a `.yaml` file stored in the `/tickets/` directory.
 | `timeout`       | integer   | ❌       | Optional time limit in seconds |
 | `flag`          | string    | ❌       | Optional flag string (e.g., `LINUX{ssh_config_fixed}`) |
 | `tags`          | list      | ❌       | Keywords for categorizing tickets (e.g., `ssh`, `firewall`) |
-| `check_script`  | string    | ❌       | Path to a custom checker script for validation |
 | `objectives_map`| list      | ❌       | Mappings to one or more certification objectives with exam metadata and associated tools |
+| `setup_script`     | string  | ❌       | (Optional) Path to a script that sets up the environment for the ticket |
+| `strikedown_script`| string  | ❌       | (Optional) Path to a script that cleans up the environment after the ticket is completed |
 
 ---
 
@@ -57,6 +59,7 @@ objectives:
 
 question_type: scripting
 
+check_script: "src/checks/ticket-001-check.sh"
 ```
 
 ---
@@ -77,8 +80,24 @@ hints:
 timeout: 900  # 15 minutes
 flag: LINUX{e99a18c428cb38d5f260853678922e03}
 tags: [ssh, networking, troubleshooting]
-check_script: checks/ticket-001-check.sh
+
+setup_script: "src/setup/ticket-001-setup.sh"
+strikedown_script: "src/setip/ticket-001-strikedown.sh"
 ```
+
+---
+
+### 🛠 Setup and Strikedown Scripts
+
+Some tickets may require the system to be in a specific state before the user attempts the challenge (e.g., background processes running, files pre-created, services misconfigured).
+
+- **setup_script** (optional):  
+  A bash script that is run before the ticket is activated, creating any needed processes, files, configurations, or environment conditions.
+
+- **strikedown_script** (optional):  
+  A bash script that is run after ticket completion (success, failure, or timeout), restoring the environment to a clean state.
+
+**If no setup/strikedown script is provided, the ticket is assumed to require no environmental preparation or cleanup.**
 
 ---
 
