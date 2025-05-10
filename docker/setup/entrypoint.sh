@@ -28,8 +28,11 @@ echo "[✓] SSH setup complete — container is staying alive."
 #####################################################################
 
 CONFIG_DIR="$HOME/.config/sysadmin-simulator"
+mkdir CONFIG_DIR
 CONFIG_FILE="$CONFIG_DIR/config.yaml"
+touch CONFIG_FILE
 CONFIG_SCRIPT="/src/scripts/sysadmin-sim-config.sh"
+touch CONFIG_SCRIPT
 
 # Check if the config file exists on login
 if [[ ! -f "$CONFIG_FILE" ]]; then
@@ -43,14 +46,13 @@ if ! grep -q "alias sysadmin-sim" "$HOME/.bashrc"; then
     echo "[+] Added sysadmin-sim alias to .bashrc"
 fi
 
-if ! grep -q "alias sysadmin-sim" "$HOME/.zshrc"; then
-    echo "alias sysadmin-sim='bash $CONFIG_SCRIPT'" >> "$HOME/.zshrc"
-    echo "[+] Added sysadmin-sim alias to .zshrc"
-fi
+#if ! grep -q "alias sysadmin-sim" "$HOME/.zshrc"; then
+#    echo "alias sysadmin-sim='bash $CONFIG_SCRIPT'" >> "$HOME/.zshrc"
+#    echo "[+] Added sysadmin-sim alias to .zshrc"
+#fi
 
 # Refresh the shell to apply alias immediately
 source "$HOME/.bashrc" 2>/dev/null
-source "$HOME/.zshrc" 2>/dev/null
 
 echo "[+] Welcome to SysAdmin Simulator!"
 echo "[+] Type 'sysadmin-sim' to configure your experience."
