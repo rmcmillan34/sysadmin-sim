@@ -162,6 +162,15 @@ Base images are hosted on [GitHub Container Registry (GHCR)](https://ghcr.io) an
 |---------|--------|-----|
 | Ubuntu  | amd64  | `ghcr.io/rmcmillan34/sysadmin-sim-ubuntu-base:ubuntu-22.04-amd64` |
 | Ubuntu  | arm64  | `ghcr.io/yrmcmillan34/sysadmin-sim-ubuntu-base:ubuntu-22.04-arm64` |
+| Debian  | amd64  | `ghcr.io/rmcmillan34/sysadmin-sim-debian-base:debian-12-amd64` |
+| Debian  | arm64  | `ghcr.io/rmcmillan34/sysadmin-sim-debian-base:debian-12-arm64` |
+| Rocky   | amd64  | `ghcr.io/rmcmillan34/sysadmin-sim-rocky-base:rocky-9-amd64` |
+| Rocky   | arm64  | `ghcr.io/rmcmillan34/sysadmin-sim-rocky-base:rocky-9-arm64` |
+| Alpine | amd64  | `ghcr.io/rmcmillan34/sysadmin-sim-alpine-base:alpine-3.18-amd64` |
+| Alpine | arm64  | `ghcr.io/rmcmillan34/sysadmin-sim-alpine-base:alpine-3.18-arm64` |
+| Fedora  | amd64  | `ghcr.io/rmcmillan34/sysadmin-sim-fedora-base:fedora-39-amd64` |
+| Fedora  | arm64  | `ghcr.io/rmcmillan34/sysadmin-sim-fedora-base:fedora-39-arm64` |
+| Raspbian | arm64  | `ghcr.io/rmcmillan34/sysadmin-sim-raspbian-base:raspbian-12-arm64` |
 
 You can pull these directly:
 
@@ -180,6 +189,28 @@ To view or pull a specific version of a base image:
 docker pull ghcr.io/rmcmillan34/sysadmin-sim-<distribution-base:<distribution-<version-<architecture>
 ```
 These builds are automatically updated via GitHub Actions on each push to main.
+
+---
+
+## Configuing SysAdmin Simulator
+The Sysadmin Simulator configuration script will run when you first login. Otherwise you can run it at any time by running the following command:
+
+```bash
+sysadmin-sim config
+```
+
+Your settings mid run will be saved to the following file:
+
+```bash
+~/.config/sysadmin-sim/config.yaml
+```
+
+In the configurator you can set the following options:
+
+- **Game Mode**: Exam, Random, or Continuous play
+- **Exam Target**: Linux+, LPIC-1, LPIC-2, RHCSA, LFCS
+- **Difficulty**: Easy, Medium, Hard
+- **Timer Display**: Prompt, background, both, none, or per ticket specification
 
 ---
 

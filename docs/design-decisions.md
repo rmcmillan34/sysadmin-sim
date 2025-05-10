@@ -400,4 +400,75 @@ strikedown_script: "setup/ticket-017-strikedown.sh"
 
 ---
 
-## [DD-018] 
+## [DD-018] Countdown Timer for Ticket Challenges.
+
+**Decision Date:** 2025-05-10
+**Status:** Finalized  
+
+### Context:
+The SysAdmin Simulator aims to simulate real-world pressure when solving administrative problems. A visual countdown timer enhances realism and helps learners manage time effectively in the exam scenario. However, certain tickets may benefit from a more subtle or absent timer display.
+
+### Decision:
+- The simulator will have a **countdown timer as a default feature**.  
+- By default, the timer will display **both in the shell prompt and as a background notification**.  
+- A **global configuration file** (`/etc/sim-config.yaml`) will specify the default behavior:
+  ```yaml
+  timer_display: "both"  # default, prompt, background, none
+  ```
+  This can optionally be set by the player on startup to customise their experience.
+
+- Tickets may optionally override this using a timer_display field within their `ticket-XXX.yaml`.
+
+**Valid Values**
+`both`: Displays within the terminal prompt and as a background noticfication via `wall`
+`prompt`: Only displays the time remaining within the users terminal prompt.
+`background`: Only notifications will be given regularly via the `wall` command
+`none`: No timer notifications will be given for this ticket.
+
+### Constraints:
+- Global configuration to be utilised as priority
+- Timer should not disrupt active command input
+- Timer script must be light weight and responsive to minimise shell lag
+- On completion or ticket cancellation timer should clear automatically as a task of the strikedown script.
+
+### Future considerations:
+- Potentially allow users to decrease the ticket time via difficulty settings
+
+---
+
+## [DD-019] User Configuration Menu and Runtime Ticket Selection
+
+**Decision Date:** 2025-05-10  
+**Status:** Finalized  
+
+### Context:
+To increase user flexibility based on their requirements and mirror real-world sysadmin scenarios, the simulator should allow users to choose their learning mode, timer settings, and target exam upon login. This also avoids creating multiple container images for each exam type.
+
+### Decision:
+- Upon first login to the simulator, or by a command, the user is presented with a **menu** to configure their simulation/run experience.
+- Options include:
+    - Game mode (Exam mode (Specific certification question distribution), Random Challenges (Configurable number), Continuous Play)
+    - Timer settings (prompt, background, both, none, or per ticket)
+    - Difficulty level (easy, medium, hard)
+- Chosen settings will be stored in a **user specific configuration file**:
+    `~/.config/sysadmin-simulator/config.yaml`
+- The menu is triggered by:
+    - First login
+    - Running the sysadmin-simulator config command
+    ```bash
+    sysadmin-sim config
+    ```
+- Tickets are filtered `dynamically` based on the user option selection.
+
+### Constraints:
+- All tickets will be loaded to the container on build, only relevant tickets will be selected at runtime
+- The configuration should be **user-specific** to allow for multi user sessions on the same container.
+- The system must gracefully revert to default settings if the configuration file is missing or corrupted
+
+### Future Considerations:
+- Allow for saving of multiple custom configurations for quick swapping
+- Suport **multi-player environments** with per player configurations.
+
+---
+
+## [DD-020]

@@ -1,0 +1,121 @@
+Alright, here's a list of command-line tasks covered in the sources you provided:
+
+*   **Getting System Information and Status**:
+    *   Getting the current logged-in username using the `whoami` command. Commands are case-sensitive.
+    *   Displaying detailed information about the Linux machine, including hardware, name, OS, and kernel version, using the `uname` command. The `uname` command has various options or flags for different results. `hostname` also gives the name of the host machine. System information includes system uptime, process details, disk space usage, memory usage, and logged-in users.
+    *   Listing logged-in users using the `who` command.
+    *   Seeing who the logged-in users are and what they are doing, including their activity and the software they are using, with the `w` command.
+    *   Including remote host information for logged-in users with the `w -f` option.
+    *   Checking system performance and status, specifically looking at physical and swap memory usage, using the `free` command. The output of `free` can be customised in various ways, such as human-readable format, wide display, and setting update delay.
+
+*   **Process and Job Management**:
+    *   Managing processes using specific commands.
+    *   Viewing a snapshot of current processes using the `ps` command by itself. This typically shows processes running in the foreground or the current shell.
+    *   Showing all processes running on the system with details like Process ID (PID), user, CPU usage, and memory usage, using `ps aux`. This includes processes running in the background and foreground.
+    *   Displaying all processes with additional details such as the Parent Process ID (PPID) and the full command line, using `ps -ef`.
+    *   Listing all processes for a specific user, for example, using `ps -u <username>`.
+    *   Searching for processes by combining the `ps` command with `grep`.
+    *   Performing real-time process monitoring using `top`. `top` provides a dynamic display of everything running. The update frequency can be changed, for instance, with `top -d 5` for a 5-second delay. The display order in `top` can be modified, for example, sorting by CPU usage (Shift + P) or memory usage (Shift + M). `top` also has interactive commands like `k` to kill a process, `r` to renice a process, and `q` to quit.
+    *   Searching for processes and getting their PIDs using the `pgrep` command. Examples include finding the PID of a process by name (`pgrep Firefox`) or finding all PIDs running under a specific user (`pgrep Cali`). You can also search by the command line value of a process using `pgrep -f <pattern>`.
+    *   Killing a process using the `kill` command, which requires the process ID (PID). Forcefully killing a process can be done using `kill -9 <PID>`.
+    *   Killing a process by its name using the `pkill` command. You can kill all processes for a specific user with `pkill -u <username>`. `pkill -f <pattern>` kills all processes matching a given pattern.
+    *   Terminating all instances of a specified process using the `killall` command, which typically requires pseudo permission and the process name. Forcing the termination of all instances can be done with `killall -9 <process_name>`.
+    *   Managing services with `systemctl`, which is the primary command for managing services in systemd environments.
+    *   Starting a service using `sudo systemctl start <service_name>`.
+    *   Stopping a service using `sudo systemctl stop <service_name>`.
+    *   Enabling a service (so it starts on boot) using `sudo systemctl enable <service_name>`.
+    *   Disabling a service using `sudo systemctl disable <service_name>`.
+    *   Checking the status of a service using `systemctl status <service_name>`, which shows if it's active and recent logs.
+    *   Restarting a service using `systemctl restart <service_name>`.
+    *   Reloading a service using `systemctl reload <service_name>`.
+    *   Managing services in sysvinit systems using the `service` command, with syntax like `sudo service <service_name> start|stop|status|restart`.
+    *   Listing running services using `systemctl list-units type service`.
+    *   Scheduling recurring tasks using `cron` and `crontab`.
+    *   Editing the current user's crontab file using `crontab -e`.
+    *   Listing all scheduled cron jobs for the current user using `crontab -l`.
+    *   Scheduling a singular, one-time command using the `at` command, often with syntax like `echo <command> | at <time>`.
+    *   Looking at scheduled `at` jobs using `atq`.
+    *   Removing scheduled `at` jobs using `atrm <job_number>`.
+
+*   **File and Directory Management**:
+    *   Working with the file system and file directories.
+    *   Using basic commands like `pwd` (print working directory), `ls` (list directory contents), and `cd` (change directory).
+    *   Printing output to the screen using the `echo` command.
+    *   Outputting the result of a command into a file using the `>` operator. This can also create the file if it doesn't exist.
+    *   Creating files using the `touch` command.
+    *   Creating directories using the `mkdir` command.
+    *   Removing empty directories using the `rmdir` command. `rmdir` will fail if the directory is not empty. The `--ignore-fail-on-non-empty` option can ignore this failure.
+    *   Deleting files using the `rm` command.
+    *   Recursively removing a directory and its contents (including subfolders and files) using the `rm -r` command. `rmdir` cannot do this recursively.
+    *   Copying files using the `cp` command.
+    *   Moving files using the `mv` command.
+
+*   **Disk and File System Management**:
+    *   Managing disks, partitions, and file systems.
+    *   Listing partitions and disks using `sudo fdisk -l`.
+    *   Managing disk partitions by creating, modifying, and deleting them using the `fdisk` command-line utility. `fdisk` is commonly used for managing MBR and GPT partition tables. You can enter an interactive mode by running `fdisk <partition_name>`. Changes made in interactive mode are written to the disk by typing `w` and pressing enter. A new partition can be created using the `n` option.
+    *   Using `parted` for partition management via the command line. `parted` is an interactive tool where you can list partitions (`print`) and interact with them. Its graphical equivalent is `gparted`.
+    *   Looking at file systems and partitions using the `lsblk` command.
+    *   Creating file systems using the `mkfs` command.
+    *   Creating a mount point (which is a directory) for a new file system using `mkdir`.
+    *   Mounting a file system, which attaches a created file system on a partition to a new mount point directory, using `sudo mount <partition> <mount_point>`.
+
+*   **Networking**:
+    *   Interacting with your network, including configuration and troubleshooting. This is not a replacement for network certification training.
+    *   Using the `ip` or `ifconfig` commands depending on the Linux version.
+    *   Looking at active network connections using `netstat` and `ss`.
+    *   Querying DNS to get IP addresses or DNS information for websites using the `nslookup` command. This is useful for looking up DNS records for a domain (`nslookup <domain>`).
+    *   Seeing the path network connections take using a command like `tracepath` (mentioned implicitly in context with checking IPs from `netstat`).
+
+*   **User and Group Management**:
+    *   Managing users and groups, including creating, modifying, and deleting them. This is different from just listing logged-in users.
+    *   Creating users using the `useradd` command.
+    *   Modifying user accounts using the `usermod` command. This command has many options, such as appending users to new supplementary groups, changing their shell, or locking/unlocking accounts (`usermod -L`/`usermod -U`).
+    *   Deleting users using the `userdel` command. By default, `userdel` does not delete the user's home directory, but the `-r` option can be used to remove the home directory and files.
+    *   Creating groups using the `groupadd` command.
+    *   Modifying groups using the `groupmod` command.
+    *   Deleting groups using the `groupdel` command.
+
+*   **File Permissions and Ownership**:
+    *   Finding and changing permissions and ownership of files.
+    *   Changing permissions of files and directories using the `chmod` command. This is essential for making shell scripts executable.
+    *   Changing ownership of files and directories using the `chown` command.
+
+*   **System Monitoring and Logging**:
+    *   Monitoring the system and viewing logs.
+    *   Viewing and filtering system logs using the `journalctl` command, which is used on systemd-based Linux systems. `journalctl` will not work on sysvinit systems.
+    *   Viewing the entire system log with `journalctl`.
+    *   Filtering logs by boot using `journalctl -b`.
+    *   Filtering logs by service using `journalctl -u <service_name>`.
+    *   Filtering logs by time using options like `--since <date>` and `--until <date>`.
+    *   Filtering logs by priority using `journalctl -p <priority>`.
+    *   Combining multiple filters in `journalctl`.
+    *   Following log output in real-time using `journalctl -f`.
+
+*   **Package Management**:
+    *   Managing software on Linux using package managers. This automates installing, updating, and removing software and handles dependencies.
+    *   Using the `apt` (Advanced Package Tool) package manager on Debian and Ubuntu distributions.
+    *   Updating the list of available packages and their versions (`sudo apt update`). This updates the databases that `apt` pulls from.
+    *   Upgrading all installed packages to their latest versions (`sudo apt upgrade`).
+    *   Installing a specific package (`sudo apt install <package_name>`).
+    *   Removing packages.
+    *   Troubleshooting packages.
+
+*   **Shell Scripting**:
+    *   Learning the basics of shell scripting and creating scripts. Shell scripting is a powerful concept for automating tasks.
+    *   Using `echo` within scripts to display output. Variables can be embedded in `echo` output.
+    *   Using operators within scripts, such as the `>` operator for output redirection.
+    *   Using control structures like For loops to iterate through lists or strings.
+    *   Using control structures like While loops.
+    *   Using conditional statements like `case` statements.
+    *   Using conditional and comparative statements like `if` statements. Combining control structures allows for developing algorithms.
+    *   Making shell scripts executable using the `chmod` command (e.g., `chmod +x <script_name>` or `chmod 777 <script_name>`). This is a critical step for running scripts.
+    *   Creating various useful scripts, such as backup scripts (potentially using tools like `tar` or `rsync`) and service check scripts. Scripts can prompt for user input and handle multiple inputs by turning them into arrays using the internal field separator. Scripts can combine commands like `systemctl status` and `systemctl start` to monitor and manage services automatically.
+
+*   **Virtualization (VirtualBox)**:
+    *   Managing VirtualBox Virtual Machines (VMs) using the `vboxmanage` command-line interface.
+    *   Starting a VirtualBox VM using `vboxmanage startvm <VM_name>`.
+    *   Listing registered VirtualBox VMs using `vboxmanage list vms`.
+    *   Using scripts for virtualizing machines.
+
+This list covers the primary command-line tasks and associated commands discussed in the provided source material. Remember that many commands have numerous options and flags that can modify their behaviour, and consulting the manual pages (`man <command>`) is recommended for detailed information.
