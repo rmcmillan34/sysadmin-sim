@@ -466,7 +466,7 @@ To increase user flexibility based on their requirements and mirror real-world s
 - The system must gracefully revert to default settings if the configuration file is missing or corrupted
 
 ### Future Considerations:
-- Allow for saving of multiple custom configurations for quick swapping
+- Allow for saving of multiple custom configuratons for quick swapping
 - Suport **multi-player environments** with per player configurations.
 
 ---
