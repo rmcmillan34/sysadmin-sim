@@ -39,7 +39,7 @@ fi
 
 # Add alias for the sysadmin user
 if ! grep -q "alias sysadmin-sim" "$USER_HOME/.bashrc"; then
-    echo "alias sysadmin-sim='bash /src/scripts/sysadmin-sim-config.sh'" >> "$USER_HOME/.bashrc"
+    echo "alias sysadmin-sim='bash /root/sysadmin-sim-config.sh'" >> "$USER_HOME/.bashrc"
     echo "[+] Added sysadmin-sim alias to $USER_HOME/.bashrc"
 fi
 
