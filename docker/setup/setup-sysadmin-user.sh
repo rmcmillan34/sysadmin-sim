@@ -10,19 +10,12 @@ echo "[+] Creating user: $USERNAME"
 if id "$USERNAME" >/dev/null 2>&1; then
     echo "[i] User $USERNAME already exists"
 else
-    # Detect Debian-based distros (has /etc/debian_version)
+    # Detect Debian-based distros
     if [ -f /etc/debian_version ]; then
         echo "[+] Detected Debian-based system — using adduser"
-        # --disabled-password: user can't log in via password
-        # --gecos "": skip interactive prompts
-        # --home: specify home directory
-        # --shell: specify default shell
         adduser --disabled-password --gecos "" --home "$USER_HOME" --shell /bin/bash "$USERNAME"
     else
         echo "[+] Using useradd for non-Debian system"
-        # -m: create home
-        # -d: set home path
-        # -s: set shell
         useradd -m -d "$USER_HOME" -s /bin/bash "$USERNAME"
     fi
 fi
@@ -30,7 +23,7 @@ fi
 echo "[+] Create sysadmin HOME directory and set permissions"
 # Ensure home directory exists and is owned by the user
 mkdir -p "$USER_HOME"
-chown -R "$USERNAME" "$USER_HOME" || true
+chown -R "$USERNAME:$USERNAME" "$USER_HOME" || true
 
 # Ensure .bashrc exists
 if [[ ! -f "$USER_HOME/.bashrc" ]]; then
@@ -39,13 +32,18 @@ fi
 
 # Add alias for the sysadmin user
 if ! grep -q "alias sysadmin-sim" "$USER_HOME/.bashrc"; then
-    echo "alias sysadmin-sim='bash /bin/sysadmin-sim/sysadmin-sim-config.sh'" >> "$USER_HOME/.bashrc"
+    echo "alias sysadmin-sim='sudo /bin/sysadmin-sim/sysadmin-sim-config.sh'" >> "$USER_HOME/.bashrc"
     echo "[+] Added sysadmin-sim alias to $USER_HOME/.bashrc"
 fi
 
-echo "[+] Disabling sudo and restricting privilege escalation tools"
+# Add the sysadmin user to sudoers securely
+if ! grep -q "$USERNAME" /etc/sudoers.d/sysadmin-sim 2>/dev/null; then
+    echo "$USERNAME ALL=(ALL) NOPASSWD: /bin/sysadmin-sim/sysadmin-sim-config.sh" > /etc/sudoers.d/sysadmin-sim
+    chmod 440 /etc/sudoers.d/sysadmin-sim
+    echo "[+] Configured sudo access for $USERNAME"
+fi
 
-# Create /etc/sudoers.d if missing and restrict sudo usage for sysadmin
+echo "[+] Disabling sudo and restricting privilege escalation tools"
 if command -v sudo >/dev/null 2>&1; then
     mkdir -p /etc/sudoers.d
     echo "$USERNAME ALL=(ALL) NOPASSWD: /bin/false" > /etc/sudoers.d/disable-sudo
@@ -60,9 +58,5 @@ for binary in /usr/bin/su /usr/bin/pkexec; do
     fi
 done
 
-# Lock root account if passwd and shadow file are available
-if command -v passwd >/dev/null 2>&1 && [ -f /etc/shadow ]; then
-    passwd -l root || true
-fi
-
 echo "[+] Setup complete for user: $USERNAME"
+

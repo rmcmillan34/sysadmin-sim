@@ -1,0 +1,25 @@
+id: ticket-018
+title: "Adjust process priority with nice"
+difficulty: medium
+description: |
+  A script has been running with a low priority, causing it to be preempted by other processes.
+  Adjust the priority of the process named 'slowtask' to a nice value of 5.
+objectives:
+  - Use the `nice` command to set the priority of 'slowtask' to 5
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    objective_id: "1.1"
+    description: "Manage files and directories using command-line utilities"
+tools:
+  - nice
+  - ps
+tags: [process, priority, system]
+setup_script: "/bin/sysadmin-sim/ticketsticket-018-setup.sh"
+strikedown_script: "/bin/sysadmin-sim/ticket-018-strikedown.sh"
+check_script: "/bin/sysadmin-sim/ticket-018-check.sh"
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+flag: LINUX{a9cb52f8c68e24307e88b88173890393}
+

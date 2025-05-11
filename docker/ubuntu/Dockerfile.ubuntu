@@ -27,6 +27,9 @@ RUN apt-get update && \
 COPY docker/setup/setup-sysadmin-user.sh /tmp/setup-sysadmin-user.sh
 RUN chmod +x /tmp/setup-sysadmin-user.sh && /tmp/setup-sysadmin-user.sh && rm /tmp/setup-sysadmin-user.sh
 
+# Set sudo NOPASSWD for the sysadmin user to access the simulator
+RUN echo "sysadmin ALL=(ALL) NOPASSWD: /bin/sysadmin-sim/sysadmin-sim-config.sh" >> /etc/sudoers
+
 # SSH banner files
 COPY docker/setup/login-banner.player.txt /tmp/login-banner.player.txt
 COPY docker/setup/login-banner.admin.txt /tmp/login-banner.admin.txt
@@ -42,6 +45,19 @@ RUN chmod +x /tmp/setup-openssh.sh && /tmp/setup-openssh.sh && rm /tmp/setup-ope
 RUN mkdir -p /bin/sysadmin-sim
 COPY src/scripts/sysadmin-sim-config.sh /bin/sysadmin-sim/sysadmin-sim-config.sh
 RUN chmod +x /root/sysadmin-sim-config.sh
+
+# Create directories for scripts and tickets
+RUN mkdir -p /bin/sysadmin-sim /etc/.sysadmin-sim /root/tickets /root/scripts
+
+# Copy the main simulator script
+COPY src/scripts/sysadmin-sim-config.sh /bin/sysadmin-sim/sysadmin-sim-config.sh
+RUN chmod +x /bin/sysadmin-sim/sysadmin-sim-config.sh
+
+# Copy ticket files and scripts
+COPY src/tickets/ /root/tickets/
+COPY src/scripts/ /root/scripts/
+RUN chmod -R 700 /root/tickets /root/scripts
+
 
 # Set up Entrypoint
 COPY docker/setup/entrypoint.sh /usr/local/bin/entrypoint.sh
