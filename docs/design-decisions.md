@@ -504,4 +504,65 @@ ghcr.io/rmcmillan34/sysadmin-sim-<distro>:latest-<arch>
 
 ---
 
-## [DD-021] 
+## [DD-021] Standardised File Structure for SysAdmin Simulator Docker Containers
+
+**Decision Date:** 2025-05-11
+**Status:** Finalized
+
+### Context:
+The current file structure of the SysAdmin Simulator lacks standardization and consistency, leading to confusion when accessing scripts and configuration files. As the project scales, it becomes increasingly important to have a clear and organized file structure.
+
+### Decision:
+- To standardise the file structure within the SysAdmin Simulator Docker containers, the following directory structure will be implemented:
+
+#### Scripts Location
+- All executable scripts for the simulator will be located in `/bin/sysadmin-sim/`
+- This location follows the **Linux Filesystem Hierarchy Standard (FHS)** for storing executable binaries and scripts.  
+- Scripts will be made executable and accessible via `$PATH`.
+
+#### Configuration Files Location
+- All configuration files for the simulator will be located in `/etc/.sysadmin-sim/`
+- This follows the FHS for storing system-wide configuration files.
+- Configuration files will be read-only for users and only modifiable by the root user or via the simulator's configuration menu.
+
+### Implementation:
+
+- Update the **Dockerfile** to:
+- Create the directory structure:
+  ```dockerfile
+  RUN mkdir -p /bin/sysadmin-sim /etc/.sysadmin-sim
+  ```
+- Copy all relevant scripts to `/bin/sysadmin-sim/`.
+- Copy configuration files to `/etc/.sysadmin-sim/`.
+- Update environment variables to include:
+  ```bash
+  export PATH="/bin/sysadmin-sim:$PATH"
+  ```
+
+- Update **Entrypoint and Setup Scripts** to reference the new paths.
+
+- Ensure the sysadmin user's **`.bashrc`** includes:
+  ```bash
+  export PATH="/bin/sysadmin-sim:$PATH"
+  ```
+
+### Constraints:
+
+- The system must ensure that the `/bin/sysadmin-sim/` directory is part of the `$PATH` to allow running the program from anywhere.  
+- Any script that relies on configuration data must be adapted to look in the new configuration directory (`/etc/.sysadmin-sim/`).  
+- The sysadmin user's **`.bashrc`** should include the updated path.  
+
+### Benefits:
+
+- Aligns with **Linux filesystem best practices**.  
+- Ensures **clear separation** of binaries and configuration files.  
+- Reduces **path confusion** when calling simulator scripts from various environments (local shell, SSH, etc.).  
+- Easier to document and maintain as the project scales.  
+
+### Future Consideration:
+
+- If multi-user support is introduced, consider adding a **user-specific configuration directory** in addition to the system-wide one.  
+
+---
+
+## [DD-022] 

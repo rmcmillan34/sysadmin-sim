@@ -30,7 +30,7 @@ echo "[✓] SSH setup complete — container is staying alive."
 
 CONFIG_DIR="$HOME/etc/.sysadmin-simulator"
 CONFIG_FILE="$CONFIG_DIR/config.yaml"
-CONFIG_SCRIPT="/root/sysadmin-sim-config.sh"
+CONFIG_SCRIPT="/bin/sysadmin-sim/sysadmin-sim-config.sh"
 
 # Check if the config directory exists, if not create it
 if [[ ! -d "$CONFIG_DIR" ]]; then
