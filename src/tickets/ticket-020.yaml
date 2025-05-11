@@ -1,0 +1,39 @@
+id: ticket-020
+title: "Inspect a running process with ps"
+difficulty: medium
+question_type: command_demonstration
+description: |
+  A background task named 'monitortask' is running on the system.
+  Use the `ps` command to list all running processes and identify the PID of 'monitortask'.
+  Write the PID to the file /home/sysadmin/monitortask.pid.
+
+objectives:
+  - Use the `ps` command to inspect the running processes.
+  - Identify the PID of 'monitortask'.
+  - Write the PID to the file /home/sysadmin/monitortask.pid.
+hints:
+  - Use `ps aux | grep monitortask` to find the PID.
+  - Use `pgrep monitortask` for a more direct method.
+  - Redirect output to a file using `>` or `echo`.
+timeout: 300
+flag: LINUX{176b89955651c80610bf4dc7442202aa}
+tags: [process, monitoring, system]
+check_script: /bin/sysadmin-sim/ticket-020-check.sh
+setup_script: /bin/sysadmin-sim/ticket-020-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-020-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.4"
+    objective_id: "1.4"
+    description: "Given a scenario, configure and use the appropriate processes and services."
+tools:
+  - ps
+  - grep
+  - pgrep
+concepts:
+  - Process inspection
+  - System monitoring
+
