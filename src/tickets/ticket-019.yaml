@@ -1,0 +1,38 @@
+id: ticket-019
+title: "Terminate a specific process using kill"
+difficulty: medium
+question_type: command_demonstration
+description: |
+  A misbehaving process named 'hangtask' is consuming too many resources.
+  Use the `kill` command to terminate this process.
+  Verify that the process is no longer running.
+
+objectives:
+  - Use the `kill` command to terminate the 'hangtask' process.
+  - Verify that the process is no longer running using `ps` or `pgrep`.
+hints:
+  - Use `pgrep hangtask` to find the process ID.
+  - Use `kill PID` to terminate the process.
+  - Use `kill -9 PID` if the process does not terminate gracefully.
+timeout: 300
+flag: LINUX{a9cb52f8c68e24307e88b8817389039}
+tags: [process, kill, system]
+check_script: /bin/sysadmin-sim/ticket-019-check.sh
+setup_script: /bin/sysadmin-sim/ticket-019-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-019-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1"
+    objective_id: "1.4"
+    description: "Given a scenario, configure and use the appropriate processes and services."
+tools:
+  - kill
+  - pgrep
+  - ps
+concepts:
+  - Process management
+  - Signal handling
+

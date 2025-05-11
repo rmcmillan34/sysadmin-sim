@@ -2,10 +2,12 @@ FROM ubuntu:22.04
 
 LABEL maintainer="ryan.j.mcmillan34@gmail.com"
 LABEL org.opencontainers.image.source="https://github.com/rmcmillan34/sysadmin-simulator"
-LABEL stage="base"
 
 # Avoid interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
+
+# Set the hostname for the container
+ENV HOSTNAME=sysadmin-sim-ubuntu
 
 # Basic tools for ticket challenges
 RUN apt-get update && \

@@ -1,25 +1,38 @@
 id: ticket-018
 title: "Adjust process priority with nice"
 difficulty: medium
+question_type: command_demonstration
 description: |
-  A script has been running with a low priority, causing it to be preempted by other processes.
-  Adjust the priority of the process named 'slowtask' to a nice value of 5.
+  The 'slowtask' process is running with a low priority, causing it to be preempted by other processes.
+  Use the `nice` command to change the priority of the 'slowtask' process to a nice value of 5.
+  Verify the change using `ps` or `top`.
+
 objectives:
-  - Use the `nice` command to set the priority of 'slowtask' to 5
+  - Use the `nice` command to change the priority of the 'slowtask' process to a nice value of 5.
+  - Verify the process priority has been updated using `ps` or `top`.
+hints:
+  - Use `ps -o nice= -p PID` to check the current nice value.
+  - Use `nice -n 5 command` to set the nice value when starting a process.
+  - Use `renice` to change the priority of a running process.
+timeout: 300
+flag: LINUX{a9cb52f8c68e24307e88b88173890393}
+tags: [process, priority, system]
+check_script: /root/scripts/checks/ticket-018-check.sh
+setup_script: /root/scripts/setup/ticket-018-setup.sh
+strikedown_script: /root/scripts/setup/ticket-018-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
 exam_objectives:
   - exam: "Linux+"
     version: "XK0-005"
     domain: "1"
-    objective_id: "1.1"
-    description: "Manage files and directories using command-line utilities"
+    objective_id: "1.4"
+    description: "Given a scenario, configure and use the appropriate processes and services."
 tools:
   - nice
   - ps
-tags: [process, priority, system]
-setup_script: "/bin/sysadmin-sim/ticketsticket-018-setup.sh"
-strikedown_script: "/bin/sysadmin-sim/ticket-018-strikedown.sh"
-check_script: "/bin/sysadmin-sim/ticket-018-check.sh"
-compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
-architecture: [amd64, arm64]
-flag: LINUX{a9cb52f8c68e24307e88b88173890393}
+  - top
+concepts:
+  - Process management
+  - System priority
 
