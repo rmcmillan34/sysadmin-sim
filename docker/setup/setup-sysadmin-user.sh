@@ -27,10 +27,21 @@ else
     fi
 fi
 
+echo "[+] Create sysadmin HOME directory and set permissions"
 # Ensure home directory exists and is owned by the user
 mkdir -p "$USER_HOME"
 chown -R "$USERNAME" "$USER_HOME" || true
 
+# Ensure .bashrc exists
+if [[ ! -f "$USER_HOME/.bashrc" ]]; then
+    touch "$USER_HOME/.bashrc"
+fi
+
+# Add alias for the sysadmin user
+if ! grep -q "alias sysadmin-sim" "$USER_HOME/.bashrc"; then
+    echo "alias sysadmin-sim='bash /src/scripts/sysadmin-sim-config.sh'" >> "$USER_HOME/.bashrc"
+    echo "[+] Added sysadmin-sim alias to $USER_HOME/.bashrc"
+fi
 echo "[+] Disabling sudo and restricting privilege escalation tools"
 
 # Create /etc/sudoers.d if missing and restrict sudo usage for sysadmin
