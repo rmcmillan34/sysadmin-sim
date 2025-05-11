@@ -41,6 +41,10 @@ RUN chmod +x /tmp/setup-openssh.sh && /tmp/setup-openssh.sh && rm /tmp/setup-ope
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
+# Set Shell
+RUN echo "SHELL IS BEING SET"
+SHELL ["/bin/bash", "-c"]
+
 RUN echo "ENTRYPOINT IS BEING SET"
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 RUN echo "[✓] Final layer — Dockerfile complete"
