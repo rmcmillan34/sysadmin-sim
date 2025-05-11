@@ -42,6 +42,7 @@ if ! grep -q "alias sysadmin-sim" "$USER_HOME/.bashrc"; then
     echo "alias sysadmin-sim='bash /src/scripts/sysadmin-sim-config.sh'" >> "$USER_HOME/.bashrc"
     echo "[+] Added sysadmin-sim alias to $USER_HOME/.bashrc"
 fi
+
 echo "[+] Disabling sudo and restricting privilege escalation tools"
 
 # Create /etc/sudoers.d if missing and restrict sudo usage for sysadmin
