@@ -39,7 +39,7 @@ RUN chmod +x /tmp/setup-openssh.sh && /tmp/setup-openssh.sh && rm /tmp/setup-ope
 
 # Setup SysAdmin Simulator Configuration script
 # Copy the configuration script to the container
-COPY src/scripts/sysadmin-sim-config.sh /src/scripts/sysadmin-sim-config.sh
+COPY ../../src/scripts/sysadmin-sim-config.sh /src/scripts/sysadmin-sim-config.sh
 RUN chmod +x /src/scripts/sysadmin-sim-config.sh
 
 # Set up Entrypoint
