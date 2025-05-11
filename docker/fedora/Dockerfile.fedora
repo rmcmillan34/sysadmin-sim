@@ -1,13 +1,15 @@
-FROM rockylinux:9
+FROM fedora:39
 
 LABEL maintainer="ryan.j.mcmillan34@gmail.com"
 LABEL org.opencontainers.image.source="https://github.com/rmcmillan34/sysadmin-simulator"
 LABEL stage="base"
 
+# Set environment variables
 ENV TERM xterm
 ENV container docker
 ENV LANG en_US.UTF-8
 
+# Only install packages expected in a RHEL/Fedora learning environment
 RUN dnf -y update && \
     dnf install -y \
       bash \
@@ -21,22 +23,25 @@ RUN dnf -y update && \
       iputils \
     && dnf clean all
 
+# Set up SSH
+RUN dnf -y update && dnf install -y openssh-server
+
 # Set up sysadmin user
-COPY setup-sysadmin-user.sh /tmp/setup-sysadmin-user.sh
+COPY docker/setup/setup-sysadmin-user.sh /tmp/setup-sysadmin-user.sh
 RUN chmod +x /tmp/setup-sysadmin-user.sh && /tmp/setup-sysadmin-user.sh && rm /tmp/setup-sysadmin-user.sh
 
 # SSH banner files
-COPY login-banner.player.txt /tmp/login-banner.player.txt
-COPY login-banner.admin.txt /tmp/login-banner.admin.txt
+COPY docker/setup/login-banner.player.txt /tmp/login-banner.player.txt
+COPY docker/setup/login-banner.admin.txt /tmp/login-banner.admin.txt
 
 # Set up SSH
-COPY setup-openssh.sh /tmp/setup-openssh.sh
-COPY sshd_sysadmin.conf /tmp/sshd_sysadmin.conf
-COPY sshd_rootadmin.conf /tmp/sshd_rootadmin.conf
+COPY docker/setup/setup-openssh.sh /tmp/setup-openssh.sh
+COPY docker/setup/sshd_sysadmin.conf /tmp/sshd_sysadmin.conf
+COPY docker/setup/sshd_rootadmin.conf /tmp/sshd_rootadmin.conf
 RUN chmod +x /tmp/setup-openssh.sh && /tmp/setup-openssh.sh && rm /tmp/setup-openssh.sh
 
 # Set up Entrypoint
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY docker/setup/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 RUN echo "ENTRYPOINT IS BEING SET"

@@ -471,4 +471,37 @@ To increase user flexibility based on their requirements and mirror real-world s
 
 ---
 
-## [DD-020]
+## [DD-020] Simplified Docker Tagging Format
+
+**Decision Date:** 2025-05-11
+**Status:** Finalized
+
+### Context:
+The original Docker image tags were verbose and cumbersome, including the base suffix and detailed version numbers. This led to increased typing effort and a less intuitive user experience.
+Incorporation of all ticket IDs into the image means there will only be one image per ticket, so the tag format should be simplified to reflect this. This decision supercedes `DD-009`.
+
+### Decision:
+- Use the following simplified tag formats for all distributions and architectures:
+  
+```bash
+ghcr.io/rmcmillan34/sysadmin-sim-<distro>-<arch>
+ghcr.io/rmcmillan34/sysadmin-sim-<distro>-latest
+ghcr.io/rmcmillan34/sysadmin-sim-<distro>:latest-<arch>  
+```
+
+- This change applies to all supported distributions and architectures:
+    - Ubuntu, Debian, Fedora, Rocky, Alpine, RaspiOS
+
+### Implementation:
+- Update GitHub Actions workflows to use the simplified tag format.
+- Update Dockerfiles to reflect the new naming convention.
+- Validate the updated tags by pulling and running the images after a successful build.
+
+### Benefits:
+- Streamlines image management.
+- Reduces complexity in typing and remembering tags.
+- Aligns with common practices used by official Docker Hub images.
+
+---
+
+## [DD-021] 

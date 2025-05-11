@@ -94,14 +94,15 @@ jobs:
       - name: Build and Push Image ${{ matrix.distro }}:${{ matrix.version }}-${{ matrix.arch }}
         uses: docker/build-push-action@v5
         with:
-          context: ./docker/${{ matrix.distro }}
-          file: ./docker/${{ matrix.distro }}/Dockerfile.${{ matrix.distro }}-base
+          context: .
+          file: ./docker/${{ matrix.distro }}/Dockerfile.${{ matrix.distro }}
           platforms: linux/${{ matrix.arch }}
           push: true
           no-cache: true
           tags: |
-            ${{ env.GHCR_REGISTRY }}/sysadmin-sim-${{ matrix.distro }}-base:${{ matrix.distro }}-${{ matrix.version }}-${{ matrix.arch }}
-            ${{ env.GHCR_REGISTRY }}/sysadmin-sim-${{ matrix.distro }}-base:latest-${{ matrix.arch }}
+             ${{ env.GHCR_REGISTRY }}/sysadmin-sim-${{ matrix.distro }}:${{ matrix.arch }}
+             ${{ env.GHCR_REGISTRY }}/sysadmin-sim-${{ matrix.distro }}:latest-${{ matrix.arch }}
+             ${{ env.GHCR_REGISTRY }}/sysadmin-sim-${{ matrix.distro }}:latest
 
       - name: Clean up injected setup script
         run: rm -f docker/${{ matrix.distro }}/setup-sysadmin-user.sh
