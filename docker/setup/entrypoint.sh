@@ -38,9 +38,18 @@ if [[ ! -d "$CONFIG_DIR" ]]; then
     mkdir -p "$CONFIG_DIR"
 fi
 
-# Create the config file and script
-touch "$CONFIG_FILE"
-touch "$CONFIG_SCRIPT"
+# Create the config file if it doesn't exist
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    touch "$CONFIG_FILE"
+    echo "[+] Created configuration file at $CONFIG_FILE"
+fi
+
+# Check if the configuration script exists
+if [[ ! -f "$CONFIG_SCRIPT" ]]; then
+    echo "[!] Configuration script not found at $CONFIG_SCRIPT"
+    exit 1
+fi
+
 
 # Check if the config file exists on login
 if [[ ! -f "$CONFIG_FILE" ]]; then
@@ -66,4 +75,4 @@ echo "[+] Welcome to SysAdmin Simulator!"
 echo "[+] Type 'sysadmin-sim' to configure your experience."
 
 # Keep container running
-tail -f /dev/null
+exec bash
