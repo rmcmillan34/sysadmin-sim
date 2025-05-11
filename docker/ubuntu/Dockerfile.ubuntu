@@ -44,7 +44,7 @@ RUN chmod +x /tmp/setup-openssh.sh && /tmp/setup-openssh.sh && rm /tmp/setup-ope
 # Copy the configuration script to the container
 RUN mkdir -p /bin/sysadmin-sim
 COPY src/scripts/sysadmin-sim-config.sh /bin/sysadmin-sim/sysadmin-sim-config.sh
-RUN chmod +x /root/sysadmin-sim-config.sh
+RUN chmod +x /bin/sysadmin-sim/sysadmin-sim-config.sh
 
 # Create directories for scripts and tickets
 RUN mkdir -p /bin/sysadmin-sim /etc/.sysadmin-sim /root/tickets /root/scripts
