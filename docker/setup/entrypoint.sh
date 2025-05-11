@@ -28,9 +28,9 @@ echo "[✓] SSH setup complete — container is staying alive."
 #####       SysAdmin Simulator Configuration Script             #####
 #####################################################################
 
-CONFIG_DIR="$HOME/.config/sysadmin-simulator"
+CONFIG_DIR="$HOME/etc/.sysadmin-simulator"
 CONFIG_FILE="$CONFIG_DIR/config.yaml"
-CONFIG_SCRIPT="/src/scripts/sysadmin-sim-config.sh"
+CONFIG_SCRIPT="/root/sysadmin-sim-config.sh"
 
 # Check if the config directory exists, if not create it
 if [[ ! -d "$CONFIG_DIR" ]]; then
