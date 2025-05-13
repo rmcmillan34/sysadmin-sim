@@ -1,0 +1,37 @@
+id: ticket-022
+title: "Search logs using grep"
+difficulty: medium
+question_type: command_demonstration
+description: |
+  A support engineer needs to identify when a simulated service failure occurred.
+  Use `grep` to search the log file `/var/log/sysadmin-sim/failure.log` for lines containing the string "ERROR".
+  Save only the number of matching lines to `/home/sysadmin/error-count.txt`.
+
+objectives:
+  - Use `grep` to search for the term "ERROR" in a file.
+  - Count the number of matches and write the count to a file.
+hints:
+  - Try `grep -c` to get a count of matching lines.
+  - Use `wc -l` if using `grep` without `-c`.
+timeout: 300
+flag: LINUX{b25015ab121465ae22f87fb123e5b47f}
+tags: [grep, log analysis, troubleshooting]
+check_script: /bin/sysadmin-sim/ticket-022-check.sh
+setup_script: /bin/sysadmin-sim/ticket-022-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-022-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.4"
+    objective_id: "1.4"
+    description: "Given a scenario, configure and use the appropriate processes and services."
+tools:
+  - grep
+  - wc
+concepts:
+  - Pattern matching
+  - Log analysis
+  - Text processing
+

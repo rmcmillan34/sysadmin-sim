@@ -1,0 +1,38 @@
+id: ticket-023
+title: "Locate system logs using find"
+difficulty: medium
+question_type: command_demonstration
+description: |
+  A developer has lost track of several important log files that end in `.log`.
+  Search the `/var/sysadmin-sim/logs` directory and all its subdirectories for
+  files that end with `.log`. Record the number of files you find into
+  `/home/sysadmin/log-count.txt`.
+
+objectives:
+  - Use the `find` command to search for files ending with `.log`.
+  - Count the number of matching files and write the count to a file.
+hints:
+  - Use `find /path -type f -name '*.log'`
+  - Use `wc -l` to count results, or `find -printf . | wc -c`
+timeout: 300
+flag: LINUX{839a1b16146622988b27600ebd9a9e71}
+tags: [find, filesystem, discovery]
+check_script: /bin/sysadmin-sim/ticket-023-check.sh
+setup_script: /bin/sysadmin-sim/ticket-023-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-023-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.4"
+    objective_id: "1.4"
+    description: "Given a scenario, configure and use the appropriate processes and services."
+tools:
+  - find
+  - wc
+concepts:
+  - File discovery
+  - Pattern matching
+  - Recursive search
+

@@ -1,0 +1,41 @@
+id: ticket-021
+title: "Monitor system load using top"
+difficulty: easy
+question_type: command_demonstration
+description: |
+  You're troubleshooting a performance issue. Use the `top` command to monitor real-time CPU usage,
+  and identify the most resource-intensive process. Record the PID of that process into the file
+  /home/sysadmin/top-highest.pid.
+
+objectives:
+  - Use the `top` command to inspect real-time system activity.
+  - Identify the most CPU-intensive process.
+  - Write the PID of that process to /home/sysadmin/top-highest.pid)
+
+hints:
+  - Use `top` or `htop` to view system load.
+  - Look at the `%CPU` column to find the top process.
+  - Use `ps --sort=-%cpu` as an alternative.
+timeout: 300
+flag: LINUX{176b89955651c80610bf4dc7442202aa}
+tags: [monitoring, performance, cpu]
+check_script: /bin/sysadmin-sim/ticket-021-check.sh
+setup_script: /bin/sysadmin-sim/ticket-021-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-021-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.4"
+    objective_id: "1.4"
+    description: "Given a scenario, configure and use the appropriate processes and services."
+tools:
+  - top
+  - ps
+  - htop
+concepts:
+  - CPU usage
+  - Real-time monitoring
+  - Process identification
+
