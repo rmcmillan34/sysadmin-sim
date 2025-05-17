@@ -1,0 +1,37 @@
+id: ticket-024
+title: "Create a timestamped file with touch"
+difficulty: easy
+question_type: command_demonstration
+description: |
+  You’ve been asked to prepare a system marker for a backup event.
+  Use the `touch` command to create an empty file named `backup.marker`
+  inside the directory `/home/sysadmin/markers/`.
+  Ensure the timestamp on the file reflects the current time.
+
+objectives:
+  - Create a file named `backup.marker` in `/home/sysadmin/markers/`.
+  - Ensure it has a recent timestamp (within the last 2 minutes).
+hints:
+  - Use `mkdir` first to create the directory if it doesn’t exist.
+  - Use `touch /path/to/file` to create or update timestamp.
+timeout: 300
+flag: LINUX{0568bd80f3b30a4edf43ce60bbcca8bc}
+tags: [file_creation, timestamps, touch]
+check_script: /bin/sysadmin-sim/ticket-024-check.sh
+setup_script: /bin/sysadmin-sim/ticket-024-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-024-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.2"
+    objective_id: "1.2"
+    description: "Given a scenario, manage files and directories."
+tools:
+  - touch
+  - date
+concepts:
+  - Timestamps
+  - File creation
+

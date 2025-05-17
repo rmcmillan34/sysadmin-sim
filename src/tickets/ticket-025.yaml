@@ -1,0 +1,35 @@
+id: ticket-025
+title: "Identify file types using file"
+difficulty: easy
+question_type: command_demonstration
+description: |
+  Several mysterious files have been found in `/var/sysadmin-sim/mystery/`.
+  Use the `file` command to determine which file is a shell script,
+  and record its filename into `/home/sysadmin/shellscript.txt`.
+
+objectives:
+  - Use `file` to inspect files and identify a shell script.
+  - Write only the name of the shell script to the output file.
+hints:
+  - Run `file *` inside the directory to see types.
+  - Look for a file described as “Bourne-Again shell script”.
+timeout: 300
+flag: LINUX{cb87c95e01c4c7278fec144f400448a1}
+tags: [file_identification, scripting, shell]
+check_script: /bin/sysadmin-sim/ticket-025-check.sh
+setup_script: /bin/sysadmin-sim/ticket-025-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-025-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.2"
+    objective_id: "1.2"
+    description: "Given a scenario, manage files and directories."
+tools:
+  - file
+concepts:
+  - File type detection
+  - Binary vs. script files
+
