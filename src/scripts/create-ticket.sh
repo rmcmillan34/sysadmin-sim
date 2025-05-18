@@ -1,50 +1,59 @@
+
 #!/bin/bash
 set -e
 
-# --- Define paths ---
-TICKETS_DIR="../tickets"
-CHECKS_DIR="../checks"
-SETUP_DIR="../setup"
-# --- Detect latest ticket number ---
-LATEST=$(find "$TICKETS_DIR" -maxdepth 1 -name 'ticket-*.yaml' \
-    | grep -oE 'ticket-[0-9]+' \
-    | cut -d'-' -f2 \
-    | sort -n | tail -n1)
+# --- Path setup ---
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TICKETS_DIR="${SCRIPT_DIR}/../tickets"
+SETUP_DIR="${SCRIPT_DIR}/../setup"
+CHECKS_DIR="${SCRIPT_DIR}/../checks"
 
-if [ -z "$LATEST" ]; then
-    NEXT_NUM=1
+# --- Determine next ticket number ---
+max_num=$(find "$TICKETS_DIR" -type f -name 'ticket-*.yaml' \
+            | grep -oE 'ticket-[0-9]+' \
+            | cut -d- -f2 \
+            | sort -n \
+            | tail -1)
+if [[ -z "$max_num" ]]; then
+    next_num=1
 else
-    NEXT_NUM=$((LATEST + 1))
+    next_num=$((10#$max_num + 1))
 fi
-
-# --- Format ticket ID ---
-TICKET_NUM=$(printf "%03d" "$NEXT_NUM")
+TICKET_NUM=$(printf "%03d" "$next_num")
 TICKET_NAME="ticket-${TICKET_NUM}"
 FLAG_HASH=$(echo "${TICKET_NAME}.yaml" | md5sum | cut -d' ' -f1)
 
-# --- Define full file paths ---
+# --- File paths for new ticket ---
 YAML_FILE="${TICKETS_DIR}/${TICKET_NAME}.yaml"
 SETUP_SCRIPT="${SETUP_DIR}/${TICKET_NAME}-setup.sh"
+STRIKEDOWN_SCRIPT="${SETUP_DIR}/${TICKET_NAME}-strikedown.sh"
 CHECK_SCRIPT="${CHECKS_DIR}/${TICKET_NAME}-check.sh"
-STRIKEDOWN_SCRIPT="${CHECKS_DIR}/${TICKET_NAME}-strikedown.sh"
 
-# --- Create files ---
-echo "[+] Creating ticket files for ${TICKET_NAME}..."
-#touch "$YAML_FILE"
-echo "[✓] Created: $YAML_FILE"
+# --- Safely resolve path for printing ---
+safe_resolve() {
+    local DIR="$(cd "$(dirname "$1")" && pwd)"
+    local FILE="$(basename "$1")"
+    echo "$DIR/$FILE"
+}
 
-#touch "$SETUP_SCRIPT"
-#chmod +x "$SETUP_SCRIPT"
-echo "[✓] Created: $SETUP_SCRIPT"
+# --- Existence check ---
+if [[ -f "$YAML_FILE" ]]; then
+    echo "[✗] Ticket already exists: $(safe_resolve "$YAML_FILE")"
+    echo "    Refusing to overwrite existing ticket."
+    exit 1
+fi
 
-#touch "$CHECK_SCRIPT"
-#chmod +x "$CHECK_SCRIPT"
-echo "[✓] Created: $CHECK_SCRIPT"
+# --- Output planned creation ---
+echo "[+] Creating files for: $TICKET_NAME"
+echo "[i] Ticket YAML:        $(safe_resolve "$YAML_FILE")"
+echo "[i] Setup script:       $(safe_resolve "$SETUP_SCRIPT")"
+echo "[i] Strikedown script:  $(safe_resolve "$STRIKEDOWN_SCRIPT")"
+echo "[i] Check script:       $(safe_resolve "$CHECK_SCRIPT")"
+echo "[✓] Flag hash:          LINUX{${FLAG_HASH}}"
 
-#touch "$STRIKEDOWN_SCRIPT"
-#chmod +x "$STRIKEDOWN_SCRIPT"
-echo "[✓] Created: $STRIKEDOWN_SCRIPT"
-
-# --- Output generated flag ---
-echo "[✓] Flag hash for YAML: LINUX{${FLAG_HASH}}"
+# --- File creation logic ---
+touch "$YAML_FILE"
+touch "$SETUP_SCRIPT"      && chmod +x "$SETUP_SCRIPT"
+touch "$STRIKEDOWN_SCRIPT" && chmod +x "$STRIKEDOWN_SCRIPT"
+touch "$CHECK_SCRIPT"      && chmod +x "$CHECK_SCRIPT"
 

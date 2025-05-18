@@ -1,0 +1,37 @@
+id: ticket-026
+title: "Check file metadata with stat"
+difficulty: easy
+question_type: command_demonstration
+description: |
+  A user reports that the configuration file located at `/etc/sysadmin-sim/test.conf`
+  may have been modified recently. Your task is to use `stat` to determine the file’s
+  last modification time, and record it in the format `YYYY-MM-DD HH:MM:SS` into:
+  `/home/sysadmin/stat-result.txt`.
+
+objectives:
+  - Use the `stat` command to extract the last modification time of the file.
+  - Format the output and write only the timestamp to `/home/sysadmin/stat-result.txt`.
+hints:
+  - Use `stat -c %y /path/to/file` to get the mod time.
+  - Consider using `cut` to trim off unnecessary parts.
+timeout: 300
+flag: LINUX{5a178c8dcf513cf519f9860518185cb8}
+tags: [stat, file_inspection, metadata]
+check_script: /bin/sysadmin-sim/ticket-026-check.sh
+setup_script: /bin/sysadmin-sim/ticket-026-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-026-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.2"
+    objective_id: "1.2"
+    description: "Given a scenario, manage files and directories."
+tools:
+  - stat
+  - cut
+concepts:
+  - file metadata
+  - timestamp extraction
+
