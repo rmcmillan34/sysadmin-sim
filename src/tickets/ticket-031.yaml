@@ -1,0 +1,48 @@
+id: ticket-031
+title: "Determine the default umask"
+difficulty: medium
+question_type: command_demonstration
+description: |
+  You suspect that the current shell environment is using a non-standard umask
+  value, which may be exposing newly created files to unwanted access.
+
+  Your task is to:
+  1. Determine the current umask in effect
+  2. Create a test file using `touch` (do not manually set permissions)
+  3. Determine its permission string using `ls -l`
+  4. Write the umask value and resulting permission string on the same line into:
+     `/home/sysadmin/umask-check.txt`, separated by a space
+
+  Example format: `0022 rw-r--r--`
+
+objectives:
+  - Use the `umask` command to get the current mask
+  - Create a file with default permissions
+  - Extract resulting permissions
+  - Output both to the result file
+hints:
+  - `umask` without arguments shows the current value
+  - `touch file && ls -l file`
+  - Default umask is often `0022`
+timeout: 300
+flag: LINUX{00b4eea1069c5368180e72cc42baf41e}
+tags: [umask, file_creation, default_permissions]
+check_script: /bin/sysadmin-sim/ticket-031-check.sh
+setup_script: /bin/sysadmin-sim/ticket-031-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-031-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.2"
+    objective_id: "1.2"
+    description: "Given a scenario, manage files and directories."
+tools:
+  - umask
+  - touch
+  - ls
+concepts:
+  - default file permissions
+  - umask logic
+

@@ -1,0 +1,42 @@
+id: ticket-029
+title: "Find largest directory with du"
+difficulty: medium
+question_type: command_demonstration
+description: |
+  A web application is producing too many cache files and slowing down the server.
+  The cache is located in `/var/tmp/webcache/` and contains multiple nested folders.
+
+  Your task is to determine **which immediate subdirectory** inside `/var/tmp/webcache/`
+  is using the most disk space. Write only the name of that subdirectory (not the full path)
+  to `/home/sysadmin/largest-dir.txt`.
+
+objectives:
+  - Determine the largest directory by total size
+  - Write only the directory name (e.g., `images`) to the result file
+hints:
+  - Use `du` to scan sizes of each subdirectory inside `/var/tmp/webcache`
+  - Use `du -sh */` or `du -k --max-depth=1` for top-level dirs
+  - Combine with `sort -hr` and `head -n 1`
+timeout: 300
+flag: LINUX{65f486071c2d91c7e17e411dee60f7a3}
+tags: [disk_usage, du, sort, troubleshooting]
+check_script: /bin/sysadmin-sim/ticket-029-check.sh
+setup_script: /bin/sysadmin-sim/ticket-029-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-029-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.2"
+    objective_id: "1.2"
+    description: "Given a scenario, manage files and directories."
+tools:
+  - du
+  - sort
+  - head
+concepts:
+  - disk usage
+  - human-readable flags
+  - shell redirection
+

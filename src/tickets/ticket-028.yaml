@@ -1,0 +1,40 @@
+id: ticket-028
+title: "Find large, old logs with find"
+difficulty: medium
+question_type: command_demonstration
+description: |
+  A cron job failed to rotate logs properly, and you suspect that some files older
+  than 7 days and larger than 5MB are clogging the `/var/log/archive` directory.
+
+  Use the `find` command to locate these files and write a list of their full paths
+  into `/home/sysadmin/old-large-logs.txt`, one per line.
+
+objectives:
+  - Search `/var/log/archive` recursively
+  - Identify files modified more than 7 days ago
+  - Filter by size greater than 5MB
+  - Output a newline-separated list to the result file
+hints:
+  - Use `-mtime +7` and `-size +5M`
+  - Use `find /var/log/archive -type f ...`
+timeout: 300
+flag: LINUX{a6e2d4a8bb56506326162e0ae5c62b7a}
+tags: [find, file_search, log_analysis]
+check_script: /bin/sysadmin-sim/ticket-028-check.sh
+setup_script: /bin/sysadmin-sim/ticket-028-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-028-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.2"
+    objective_id: "1.2"
+    description: "Given a scenario, manage files and directories."
+tools:
+  - find
+concepts:
+  - modification time
+  - file size filtering
+  - recursive search
+

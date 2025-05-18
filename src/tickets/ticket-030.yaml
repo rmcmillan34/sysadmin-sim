@@ -1,0 +1,42 @@
+id: ticket-030
+title: "Lock down insecure file permissions"
+difficulty: easy
+question_type: command_demonstration
+description: |
+  A log file has been found in `/var/log/audit/` with insecure permissions
+  that allow any user to modify it.
+
+  Your task is to change the permissions on `audit.log` to `rw-r--r--` using the
+  appropriate command. Do not change ownership or move the file.
+
+  When you're done, write the new permissions (in symbolic form) into the file:
+  `/home/sysadmin/audit-perms.txt`.
+
+objectives:
+  - Use chmod to change the file to -rw-r--r--
+  - Leave ownership and group untouched
+  - Write the permission string (e.g. rwxrw-r--) to the result file
+hints:
+  - Use `ls -l` to check the permissions
+  - Use `chmod 644 /path/to/file` to fix it
+timeout: 300
+flag: LINUX{cae62ff33a78ac62009de97d508eff15}
+tags: [chmod, permissions, hardening]
+check_script: /bin/sysadmin-sim/ticket-030-check.sh
+setup_script: /bin/sysadmin-sim/ticket-030-setup.sh
+strikedown_script: /bin/sysadmin-sim/ticket-030-strikedown.sh
+compatible_distributions: [ubuntu, debian, fedora, rocky, alpine]
+architecture: [amd64, arm64]
+exam_objectives:
+  - exam: "Linux+"
+    version: "XK0-005"
+    domain: "1.2"
+    objective_id: "1.2"
+    description: "Given a scenario, manage files and directories."
+tools:
+  - chmod
+  - ls
+concepts:
+  - file permissions
+  - symbolic representation
+
