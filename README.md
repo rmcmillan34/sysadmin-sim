@@ -223,6 +223,18 @@ We welcome issues, feature requests, and pull requests!
 - [Developer Ticket Spec](docs/ticket-spec.md)
 - [Contributing Guidelines](docs/contributing.md)
 
+### Running Tests
+
+Run the unit tests with [pytest](https://pytest.org):
+
+```bash
+pytest
+```
+
+The `validate_ticket.py` script relies on the `PyYAML` package when executed
+directly. The tests include a small YAML stub so they can run even if `PyYAML`
+is not installed.
+
 ---
 
 ## 🧠 Future Plans
