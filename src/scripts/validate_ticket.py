@@ -5,7 +5,15 @@ import sys
 import os
 import stat
 
-REQUIRED_FIELDS = ["id", "title", "difficulty", "description", "objectives"]
+REQUIRED_FIELDS = [
+    "id",
+    "title",
+    "difficulty",
+    "description",
+    "objectives",
+    "question_type",
+    "check_script",
+]
 VALID_DIFFICULTIES = {"easy", "medium", "hard", "expert"}
 
 def is_executable(filepath):

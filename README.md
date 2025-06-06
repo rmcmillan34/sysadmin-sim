@@ -231,6 +231,10 @@ Run the unit tests with [pytest](https://pytest.org):
 pytest
 ```
 
+The `validate_ticket.py` script relies on the `PyYAML` package when executed
+directly. The tests include a small YAML stub so they can run even if `PyYAML`
+is not installed.
+
 ---
 
 ## 🧠 Future Plans
