@@ -1,15 +1,25 @@
 #!/bin/bash
 
-CONFIG_DIR="$HOME/.config/sysadmin-simulator"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CONFIG_DIR="$HOME/.config/sysadmin-sim"
 CONFIG_FILE="$CONFIG_DIR/config.yaml"
-DEFAULT_CONFIG="/src/config/default.yaml"
+DEFAULT_CONFIG="$SCRIPT_DIR/../config/default.yaml"
 
 # Create config directory if it doesn't exist
 mkdir -p "$CONFIG_DIR"
 
-# If no config exists, copy the default
+# If no config exists, seed with defaults
 if [[ ! -f "$CONFIG_FILE" ]]; then
-    cp "$DEFAULT_CONFIG" "$CONFIG_FILE"
+    if [[ -f "$DEFAULT_CONFIG" ]]; then
+        cp "$DEFAULT_CONFIG" "$CONFIG_FILE"
+    else
+        cat <<EOF > "$CONFIG_FILE"
+game_mode: Exam
+exam_target: Linux+
+timer_display: prompt
+difficulty: easy
+EOF
+    fi
 fi
 
 function show_menu() {
@@ -57,8 +67,17 @@ function configure() {
                 echo "Current Configuration:"
                 cat "$CONFIG_FILE"
                 ;;
-            6) 
-                cp "$DEFAULT_CONFIG" "$CONFIG_FILE"
+            6)
+                if [[ -f "$DEFAULT_CONFIG" ]]; then
+                    cp "$DEFAULT_CONFIG" "$CONFIG_FILE"
+                else
+                    cat <<EOF > "$CONFIG_FILE"
+game_mode: Exam
+exam_target: Linux+
+timer_display: prompt
+difficulty: easy
+EOF
+                fi
                 echo "[+] Reset to default configuration."
                 ;;
             0) 

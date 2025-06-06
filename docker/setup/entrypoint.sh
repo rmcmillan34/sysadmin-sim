@@ -28,7 +28,7 @@ echo "[✓] SSH setup complete — container is staying alive."
 #####       SysAdmin Simulator Configuration Script             #####
 #####################################################################
 
-CONFIG_DIR="$HOME/etc/.sysadmin-simulator"
+CONFIG_DIR="$HOME/.config/sysadmin-sim"
 CONFIG_FILE="$CONFIG_DIR/config.yaml"
 CONFIG_SCRIPT="/bin/sysadmin-sim/sysadmin-sim-config.sh"
 
