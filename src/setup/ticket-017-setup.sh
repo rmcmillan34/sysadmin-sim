@@ -11,6 +11,6 @@ SLEEP_PID=$!
 mkdir -p /opt/ticket-017/
 echo "$SLEEP_PID" > /opt/ticket-017/expected-pid.txt
 
-echo "[+] Sleep process started successfully.  
+echo "[+] Sleep process started successfully."
 exit 0
 
