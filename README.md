@@ -223,6 +223,14 @@ We welcome issues, feature requests, and pull requests!
 - [Developer Ticket Spec](docs/ticket-spec.md)
 - [Contributing Guidelines](docs/contributing.md)
 
+### Running Tests
+
+Run the unit tests with [pytest](https://pytest.org):
+
+```bash
+pytest
+```
+
 ---
 
 ## 🧠 Future Plans
