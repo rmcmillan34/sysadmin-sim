@@ -82,7 +82,7 @@ flag: LINUX{e99a18c428cb38d5f260853678922e03}
 tags: [ssh, networking, troubleshooting]
 
 setup_script: "src/setup/ticket-001-setup.sh"
-strikedown_script: "src/setip/ticket-001-strikedown.sh"
+strikedown_script: "src/setup/ticket-001-strikedown.sh"
 ```
 
 ---
